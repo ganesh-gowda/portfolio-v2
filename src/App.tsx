@@ -7,12 +7,7 @@ import {
   Menu,
   X,
 } from 'lucide-react';
-import {
-  motion,
-  useReducedMotion,
-  useScroll,
-  useTransform,
-} from 'framer-motion';
+import { motion, useReducedMotion, useScroll, useTransform } from 'framer-motion';
 import { projects, skills } from './data';
 
 function GitHubIcon({ size = 20 }: { size?: number }) {
@@ -33,175 +28,205 @@ function LinkedInIcon({ size = 20 }: { size?: number }) {
 
 function InstagramIcon({ size = 20 }: { size?: number }) {
   return (
-    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true">
       <rect x="3" y="3" width="18" height="18" rx="5" />
       <circle cx="12" cy="12" r="4" />
-      <circle cx="17.5" cy="6.5" r=".8" fill="currentColor" stroke="none" />
+      <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none" />
     </svg>
   );
 }
 
 function XIcon({ size = 20 }: { size?: number }) {
   return (
-    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" aria-hidden="true">
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" aria-hidden="true">
       <path d="M5 4l14 16M19 4L5 20" />
     </svg>
   );
 }
 
-const navItems = [
-  { id: 'about', label: 'abt me' },
-  { id: 'work', label: 'work' },
-  { id: 'stack', label: 'toolkit' },
-];
-
-function scrollToSection(id: string) {
-  document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+function AboutVisual() {
+  const reducedMotion = useReducedMotion();
+  return (
+    <div className="about-visual" aria-hidden="true">
+      <div className="about-visual-grid" />
+      <motion.div
+        className="portrait-frame"
+        animate={reducedMotion ? undefined : { y: [-8, 8, -8], rotate: [-1, 1, -1] }}
+        transition={reducedMotion ? undefined : { duration: 9, repeat: Infinity, ease: 'easeInOut' }}
+      >
+        <div className="portrait-placeholder">
+          <span>GG</span>
+          <small>PORTRAIT / 01</small>
+        </div>
+      </motion.div>
+      <span className="floating-label label-a">JAVA / DSA / 550+</span>
+      <span className="floating-label label-b">MYSURU / INDIA</span>
+      <span className="floating-label label-c">BUILD · LEARN · SHIP</span>
+      <div className="about-visual-orbit orbit-1" />
+      <div className="about-visual-orbit orbit-2" />
+    </div>
+  );
 }
 
-export default function App() {
+function LandingPage() {
   const reducedMotion = useReducedMotion();
   const { scrollYProgress } = useScroll();
   const heroScale = useTransform(scrollYProgress, [0, 0.28], [1, 1.12]);
   const heroY = useTransform(scrollYProgress, [0, 0.35], [0, 100]);
-  const heroOpacity = useTransform(scrollYProgress, [0, 0.2], [1, 0.25]);
-  const [activeProject, setActiveProject] = useState(0);
-  const [activeSection, setActiveSection] = useState('about');
-  const [clock, setClock] = useState('');
-
-  useEffect(() => {
-    const tick = () => {
-      setClock(new Intl.DateTimeFormat('en-IN', {
-        hour: '2-digit',
-        minute: '2-digit',
-        second: '2-digit',
-        hour12: false,
-        timeZone: 'Asia/Kolkata',
-      }).format(new Date()));
-    };
-    tick();
-    const timer = window.setInterval(tick, 1000);
-    return () => window.clearInterval(timer);
-  }, []);
-
-  useEffect(() => {
-    const sections = ['about', 'work', 'stack', 'contact']
-      .map((id) => document.getElementById(id))
-      .filter(Boolean) as HTMLElement[];
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const visible = entries
-          .filter((entry) => entry.isIntersecting)
-          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
-        if (visible?.target.id) setActiveSection(visible.target.id);
-      },
-      { rootMargin: '-35% 0px -55% 0px', threshold: [0.1, 0.35, 0.6] },
-    );
-
-    sections.forEach((section) => observer.observe(section));
-    return () => observer.disconnect();
-  }, []);
-
-  const jump = (id: string) => scrollToSection(id);
+  const heroOpacity = useTransform(scrollYProgress, [0, 0.22], [1, 0.22]);
 
   return (
-    <div className="site-shell">
-      <motion.div className="progress-bar" style={{ scaleX: scrollYProgress }} aria-hidden="true" />
+    <main>
+      <section id="hero" className="hero section-frame landing-hero">
+        <motion.div className="hero-word-cloud" aria-hidden="true">
+          {[
+            ['BUILD', 'word-a'],
+            ['SOLVE', 'word-b'],
+            ['CREATE', 'word-c'],
+            ['LEARN', 'word-d'],
+            ['BREAK', 'word-e'],
+            ['REPEAT', 'word-f'],
+          ].map(([word, className], index) => (
+            <motion.span
+              key={word}
+              className={`hero-word ${className}`}
+              initial={{ opacity: 0, y: 30, filter: 'blur(14px)' }}
+              animate={{ opacity: 0.32, y: 0, filter: 'blur(0px)' }}
+              transition={{ delay: 0.15 + index * 0.12, duration: 0.9 }}
+            >
+              {word}
+            </motion.span>
+          ))}
+        </motion.div>
 
-      <main>
-        <section id="hero" className="hero section-frame">
-          <motion.div
-            className="hero-orbit hero-orbit-a"
-            animate={reducedMotion ? undefined : { rotate: 360 }}
-            transition={reducedMotion ? undefined : { duration: 28, repeat: Infinity, ease: 'linear' }}
-            aria-hidden="true"
-          />
-          <motion.div
-            className="hero-orbit hero-orbit-b"
-            animate={reducedMotion ? undefined : { rotate: -360 }}
-            transition={reducedMotion ? undefined : { duration: 44, repeat: Infinity, ease: 'linear' }}
-            aria-hidden="true"
-          />
-          <motion.div
-            className="hero-field"
-            style={reducedMotion ? undefined : { scale: heroScale, y: heroY, opacity: heroOpacity }}
-            aria-hidden="true"
-          >
-            <div className="field-noise" />
-            <div className="field-grid" />
-            <div className="field-glow glow-one" />
-            <div className="field-glow glow-two" />
-          </motion.div>
+        <motion.div
+          className="hero-orbit hero-orbit-a"
+          animate={reducedMotion ? undefined : { rotate: 360 }}
+          transition={reducedMotion ? undefined : { duration: 28, repeat: Infinity, ease: 'linear' }}
+          aria-hidden="true"
+        />
+        <motion.div
+          className="hero-orbit hero-orbit-b"
+          animate={reducedMotion ? undefined : { rotate: -360 }}
+          transition={reducedMotion ? undefined : { duration: 44, repeat: Infinity, ease: 'linear' }}
+          aria-hidden="true"
+        />
+        <motion.div
+          className="hero-field"
+          style={reducedMotion ? undefined : { scale: heroScale, y: heroY, opacity: heroOpacity }}
+          aria-hidden="true"
+        >
+          <div className="field-noise" />
+          <div className="field-grid" />
+          <div className="field-glow glow-one" />
+          <div className="field-glow glow-two" />
+        </motion.div>
 
-          <div className="hero-inner">
-            <p className="eyebrow">[ 01 / INTRO ]</p>
-            <div className="hero-title-wrap">
-              <motion.p
-                className="hero-side-note"
-                initial={{ opacity: 0, x: -18 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.7, duration: 0.7 }}
-              >
-                I build interfaces that feel<br />alive — and systems that hold up.
-              </motion.p>
-              <motion.h1
-                initial={{ opacity: 0, y: 40 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
-              >
-                GANESH<br /><span>GOWDA</span>
-              </motion.h1>
-            </div>
-            <motion.div className="hero-bottom" initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.45, duration: 0.8 }}>
-              <div className="hero-role">
-                <span>Software Engineer</span>
-                <span className="slash">/</span>
-                <span>Frontend · Full Stack · DSA</span>
-              </div>
-              <button className="circle-action" onClick={() => jump('about')} aria-label="Scroll to about">
-                <ArrowDownRight size={22} />
-              </button>
-            </motion.div>
+        <div className="hero-inner">
+          <p className="eyebrow">[ 01 / ENTRY ]</p>
+          <div className="hero-centerpiece">
+            <motion.p
+              className="hero-kicker"
+              initial={reducedMotion ? false : { opacity: 0, y: 16 }}
+              animate={reducedMotion ? undefined : { opacity: 1, y: 0 }}
+              transition={{ delay: 0.6, duration: 0.7 }}
+            >
+              computer science · software engineering · curiosity
+            </motion.p>
+            <motion.h1
+              initial={reducedMotion ? false : { opacity: 0, scale: 0.92, y: 24 }}
+              animate={reducedMotion ? undefined : { opacity: 1, scale: 1, y: 0 }}
+              transition={{ delay: 0.35, duration: 1.15, ease: [0.16, 1, 0.3, 1] }}
+            >
+              GANESH
+              <br />
+              <span>GOWDA</span>
+            </motion.h1>
+            <p className="hero-manifesto">I make interfaces feel alive and turn messy problems into working systems.</p>
           </div>
-        </section>
-
-        <section className="ticker" aria-label="Capabilities">
-          <div className="ticker-track">
-            {['BUILD', 'THINK', 'DEBUG', 'LEARN', 'SHIP', 'REPEAT', 'BUILD', 'THINK', 'DEBUG', 'LEARN', 'SHIP', 'REPEAT'].map((word, index) => (
-              <span key={`${word}-${index}`}>{word}<i>✳</i></span>
-            ))}
+          <div className="hero-bottom">
+            <span>SCROLL TO MEET THE ENGINEER</span>
+            <button className="circle-action" onClick={() => document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' })} aria-label="Scroll to about">
+              <ArrowDownRight size={22} />
+            </button>
           </div>
-        </section>
+        </div>
+      </section>
 
-        <section id="about" className="section-frame about-section">
-          <div className="about-art" aria-hidden="true">
-            <div className="scan-ring ring-one" />
-            <div className="scan-ring ring-two" />
-            <div className="scan-center">GG</div>
-            <span className="orbit-note note-one">JAVA · DSA · 550+</span>
-            <span className="orbit-note note-two">REACT · NODE · SQL</span>
-          </div>
-          <div className="about-copy">
+      <section id="about" className="section-frame about-page-section">
+        <div className="section-heading about-heading">
+          <div>
             <p className="eyebrow">[ 02 / ABOUT ME ]</p>
-            <h2>Engineer first.<br /><em>Curious always.</em></h2>
-            <p>I’m Ganesh, a computer science engineer who enjoys the space between a hard problem and a good interface. I like building products that are expressive on the surface and thoughtfully structured underneath.</p>
-            <p>My work spans frontend development, APIs, databases, machine learning experiments and a lot of algorithmic problem solving. I care about clarity, performance, accessibility and learning the “why” behind the tools I use.</p>
+            <h2>Engineer first.<br /><em>Human always.</em></h2>
+          </div>
+          <p className="section-intro">A little context before the work: what I care about, what I enjoy building, and the way I approach problems.</p>
+        </div>
+
+        <div className="about-layout">
+          <AboutVisual />
+          <div className="about-copy about-copy-large">
+            <p>I’m Ganesh, a computer science engineer who likes the space between a difficult problem and a surprisingly simple interface.</p>
+            <p>I build across frontend, backend, APIs, databases and machine learning experiments. I also spend a lot of time with Java and DSA because I enjoy understanding how things work underneath the surface.</p>
+            <p>Outside the code, I’m curious about design, music, sport and anything that makes me look at a familiar problem from a different angle.</p>
+
             <div className="about-stats">
               <div><strong>550+</strong><span>coding problems</span></div>
               <div><strong>9.4</strong><span>CGPA</span></div>
               <div><strong>∞</strong><span>things to learn</span></div>
             </div>
           </div>
-        </section>
+        </div>
+      </section>
 
-        <section id="work" className="section-frame work-section">
+      <section className="landing-end section-frame" aria-label="End of introduction">
+        <span className="eyebrow">END OF INTRO / KEEP EXPLORING</span>
+      </section>
+    </main>
+  );
+}
+
+function WorkbenchPage({ initialSection = 'work' }: { initialSection?: 'work' | 'toolkit' }) {
+  const [activeSection, setActiveSection] = useState(initialSection);
+  const reducedMotion = useReducedMotion();
+  const [activeProject, setActiveProject] = useState(0);
+
+  useEffect(() => {
+    setActiveSection(initialSection);
+  }, [initialSection]);
+
+  const selectSection = (section: 'work' | 'toolkit') => {
+    setActiveSection(section);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    window.history.replaceState(null, '', `/workbench/${section}`);
+  };
+
+  return (
+    <main className="workbench-page">
+      <section className="workbench-hero section-frame">
+        <p className="eyebrow">[ 03 / WORKBENCH ]</p>
+        <h1>
+          Work <em>&</em><br />Toolkit
+        </h1>
+        <p>Everything I build with, grouped into one focused workspace.</p>
+
+        <div className="workbench-tabs" role="tablist" aria-label="Workbench sections">
+          <button className={activeSection === 'work' ? 'workbench-tab active' : 'workbench-tab'} onClick={() => selectSection('work')} role="tab" aria-selected={activeSection === 'work'}>
+            Work
+          </button>
+          <button className={activeSection === 'toolkit' ? 'workbench-tab active' : 'workbench-tab'} onClick={() => selectSection('toolkit')} role="tab" aria-selected={activeSection === 'toolkit'}>
+            Toolkit
+          </button>
+        </div>
+      </section>
+
+      {activeSection === 'work' ? (
+        <section className="section-frame work-section workbench-section" id="workbench-work">
           <div className="section-heading">
             <div>
-              <p className="eyebrow">[ 03 / SELECTED WORK ]</p>
+              <p className="eyebrow">[ 03A / PROJECTS ]</p>
               <h2>Things I’ve<br /><em>built.</em></h2>
             </div>
-            <p className="section-intro">A handful of projects where engineering, interface design, APIs and machine learning meet.</p>
+            <p className="section-intro">Projects that combine interface design, APIs, data and machine learning into things I can actually ship.</p>
           </div>
 
           <div className="project-stage">
@@ -218,8 +243,8 @@ export default function App() {
             <motion.article
               key={projects[activeProject].title}
               className={`project-feature accent-${projects[activeProject].accent}`}
-              initial={{ opacity: 0, y: 24 }}
-              animate={{ opacity: 1, y: 0 }}
+              initial={reducedMotion ? false : { opacity: 0, y: 24 }}
+              animate={reducedMotion ? undefined : { opacity: 1, y: 0 }}
               transition={{ duration: 0.45 }}
             >
               <div className="project-visual" aria-hidden="true">
@@ -244,18 +269,18 @@ export default function App() {
             </motion.article>
           </div>
         </section>
-
-        <section id="stack" className="section-frame stack-section">
+      ) : (
+        <section className="section-frame stack-section workbench-section" id="workbench-toolkit">
           <div className="section-heading">
             <div>
-              <p className="eyebrow">[ 04 / TOOLKIT ]</p>
+              <p className="eyebrow">[ 03B / TOOLKIT ]</p>
               <h2>Tools I<br /><em>trust.</em></h2>
             </div>
-            <p className="section-intro">No badge collecting. Just the technologies I use to solve real problems, with room for the next one.</p>
+            <p className="section-intro">A focused map of the languages, frameworks and engineering foundations I use most.</p>
           </div>
           <div className="skill-map">
             {skills.map((skill, index) => (
-              <motion.div key={skill.name} className="skill-card" initial={{ opacity: 0, y: 22 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.2 }} transition={{ delay: Math.min(index * 0.025, 0.3), duration: 0.45 }}>
+              <motion.div key={skill.name} className="skill-card" initial={reducedMotion ? false : { opacity: 0, y: 22 }} whileInView={reducedMotion ? undefined : { opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.2 }} transition={{ delay: Math.min(index * 0.025, 0.3), duration: 0.45 }}>
                 <small>{skill.group}</small>
                 <strong>{skill.name}</strong>
                 <span>{String(index + 1).padStart(2, '0')}</span>
@@ -263,208 +288,77 @@ export default function App() {
             ))}
           </div>
         </section>
+      )}
 
-        <section id="contact" className="section-frame contact-section">
-          <div className="contact-beam" aria-hidden="true" />
-          <div>
-            <p className="eyebrow">[ 05 / CONTACT ]</p>
-            <h2>Have a problem<br /><em>worth solving?</em></h2>
-          </div>
-          <div className="contact-side">
-            <p>For internships, software engineering roles, interesting side projects or conversations about building on the web.</p>
-            <a className="mail-button" href="mailto:ganeshgowdam@gmail.com"><Mail size={18} />ganeshgowdam@gmail.com<ArrowUpRight size={18} /></a>
-            <div className="social-row">
-              <a href="https://github.com/ganesh-gowda" target="_blank" rel="noopener noreferrer"><GitHubIcon size={18} /> GitHub</a>
-              <a href="https://www.linkedin.com/in/ganesh-gowda-m/" target="_blank" rel="noopener noreferrer"><LinkedInIcon size={18} /> LinkedIn</a>
-            </div>
-          </div>
-        </section>
-      </main>
+      <section className="workbench-foot section-frame">
+        <p>WORKBENCH / {activeSection.toUpperCase()} / END</p>
+      </section>
+    </main>
+  );
+}
 
-      <nav className="floating-dock" aria-label="Primary navigation">
-        <div className="dock-main-links">
-          <button className={`dock-link dock-active ${activeSection === 'about' ? 'is-current' : ''}`} onClick={() => jump('about')} aria-current={activeSection === 'about' ? 'page' : undefined}>
-            <span className="dock-pixel">▦</span>
-            <span>abt me</span>
-          </button>
-          <button className={`dock-link ${activeSection === 'work' ? 'is-current' : ''}`} onClick={() => jump('work')} aria-current={activeSection === 'work' ? 'page' : undefined}>
-            <span className="dock-arrow">↗</span>
-            <span>work</span>
-          </button>
-          <button className={`dock-link ${activeSection === 'stack' ? 'is-current' : ''}`} onClick={() => jump('stack')} aria-current={activeSection === 'stack' ? 'page' : undefined}>
-            <span>toolkit</span>
-          </button>
-        </div>
+function BottomDock({ page, onNavigate }: { page: 'home' | 'work' | 'toolkit'; onNavigate: (page: 'home' | 'work' | 'toolkit') => void }) {
+  return (
+    <nav className="bottom-dock" aria-label="Persistent navigation">
+      <button className={`dock-main ${page === 'home' ? 'active' : ''}`} onClick={() => onNavigate('home')}>
+        <span className="dock-emoji">🧑🏻‍💻</span>
+        <span>abt me</span>
+      </button>
 
-        <span className="dock-divider" aria-hidden="true" />
+      <button className={`dock-link ${page === 'work' ? 'active' : ''}`} onClick={() => onNavigate('work')}>
+        <span className="dock-arrow">↗</span>
+        <span>work</span>
+      </button>
 
-        <div className="dock-socials">
-          <a href="https://x.com/" target="_blank" rel="noopener noreferrer" className="dock-social" aria-label="X">
-            <XIcon size={21} />
-          </a>
-          <a href="https://www.instagram.com/ganeshgowda.__/" target="_blank" rel="noopener noreferrer" className="dock-social" aria-label="Instagram">
-            <InstagramIcon size={21} />
-          </a>
-          <a href="mailto:ganeshgowdam@gmail.com" className="dock-social" aria-label="Email">
-            <Mail size={21} />
-          </a>
-          <a href="https://www.linkedin.com/in/ganesh-gowda-m/" target="_blank" rel="noopener noreferrer" className="dock-social" aria-label="LinkedIn">
-            <LinkedInIcon size={21} />
-          </a>
-          <a href="https://github.com/ganesh-gowda" target="_blank" rel="noopener noreferrer" className="dock-social" aria-label="GitHub">
-            <GitHubIcon size={21} />
-          </a>
-        </div>
+      <div className="dock-divider" />
 
-        <span className="dock-clock" aria-hidden="true">IST {clock}</span>
-      </nav>
+      <a className="dock-icon" href="https://x.com/" target="_blank" rel="noopener noreferrer" aria-label="X / Twitter"><XIcon /></a>
+      <a className="dock-icon" href="https://www.instagram.com/ganeshgowda.__/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><InstagramIcon /></a>
+      <a className="dock-icon" href="mailto:ganeshgowdam@gmail.com" aria-label="Email"><Mail /></a>
+      <a className="dock-icon linkedin-icon" href="https://www.linkedin.com/in/ganesh-gowda-m/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><LinkedInIcon /></a>
+      <a className="dock-icon" href="https://github.com/ganesh-gowda" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><GitHubIcon /></a>
+    </nav>
+  );
+}
 
-      <style>{`
-        .floating-dock {
-          position: fixed;
-          left: 50%;
-          bottom: max(18px, env(safe-area-inset-bottom));
-          transform: translateX(-50%);
-          z-index: 200;
-          display: flex;
-          align-items: center;
-          gap: 8px;
-          width: max-content;
-          max-width: calc(100vw - 28px);
-          padding: 7px 9px;
-          border: 1px solid rgba(255,255,255,.19);
-          border-radius: 999px;
-          background:
-            linear-gradient(180deg, rgba(42,43,45,.9), rgba(12,13,15,.94)),
-            rgba(12,13,15,.96);
-          box-shadow:
-            0 20px 60px rgba(0,0,0,.48),
-            inset 0 1px 0 rgba(255,255,255,.1),
-            inset 0 -1px 0 rgba(0,0,0,.7);
-          backdrop-filter: blur(22px) saturate(125%);
-          -webkit-backdrop-filter: blur(22px) saturate(125%);
-        }
+export default function App() {
+  const [page, setPage] = useState<'home' | 'work' | 'toolkit'>(() => {
+    const path = window.location.pathname;
+    if (path.includes('/workbench/toolkit')) return 'toolkit';
+    if (path.includes('/workbench/work')) return 'work';
+    return 'home';
+  });
 
-        .dock-main-links,
-        .dock-socials {
-          display: flex;
-          align-items: center;
-          gap: 4px;
-        }
+  useEffect(() => {
+    const handlePopState = () => {
+      const path = window.location.pathname;
+      if (path.includes('/workbench/toolkit')) setPage('toolkit');
+      else if (path.includes('/workbench/work')) setPage('work');
+      else setPage('home');
+      window.scrollTo(0, 0);
+    };
 
-        .dock-link {
-          display: inline-flex;
-          align-items: center;
-          justify-content: center;
-          gap: 8px;
-          min-height: 42px;
-          padding: 0 17px;
-          border: 0;
-          border-radius: 999px;
-          background: transparent;
-          color: rgba(244,241,235,.48);
-          cursor: pointer;
-          font: 500 12px/1 'DM Mono', monospace;
-          letter-spacing: .03em;
-          transition: color .2s ease, background .2s ease, transform .2s ease;
-        }
+    window.addEventListener('popstate', handlePopState);
+    return () => window.removeEventListener('popstate', handlePopState);
+  }, []);
 
-        .dock-link:hover,
-        .dock-link.is-current {
-          color: rgba(255,255,255,.94);
-        }
+  const navigate = (next: 'home' | 'work' | 'toolkit') => {
+    const path = next === 'home' ? '/' : `/workbench/${next}`;
+    window.history.pushState(null, '', path);
+    setPage(next);
+    window.scrollTo({ top: 0, behavior: 'auto' });
+  };
 
-        .dock-link.dock-active.is-current,
-        .dock-link.dock-active {
-          background: linear-gradient(180deg, rgba(122,122,122,.46), rgba(76,76,76,.38));
-          box-shadow: inset 0 1px 0 rgba(255,255,255,.16), 0 1px 0 rgba(0,0,0,.4);
-          color: rgba(255,255,255,.94);
-        }
+  return (
+    <div className="site-shell">
+      {page === 'home' ? <LandingPage /> : <WorkbenchPage initialSection={page} />}
 
-        .dock-link:active,
-        .dock-social:active { transform: scale(.96); }
+      <footer className="footer">
+        <span>GG / PORTFOLIO 2026</span>
+        <span>BUILT WITH CURIOSITY · SHIPPED WITH CARE</span>
+      </footer>
 
-        .dock-pixel {
-          display: inline-grid;
-          place-items: center;
-          width: 19px;
-          height: 19px;
-          border-radius: 4px;
-          color: #f4f1eb;
-          font-size: 17px;
-          line-height: 1;
-        }
-
-        .dock-arrow { color: #d9ff60; font-size: 15px; }
-
-        .dock-divider {
-          width: 1px;
-          height: 27px;
-          margin-inline: 5px;
-          background: rgba(255,255,255,.14);
-        }
-
-        .dock-social {
-          display: grid;
-          place-items: center;
-          width: 39px;
-          height: 39px;
-          border-radius: 999px;
-          color: rgba(244,241,235,.73);
-          transition: color .2s ease, background .2s ease, transform .2s ease;
-        }
-
-        .dock-social:hover {
-          color: #fff;
-          background: rgba(255,255,255,.07);
-        }
-
-        .dock-clock {
-          display: none;
-          padding-left: 7px;
-          color: rgba(244,241,235,.32);
-          font: 500 8px 'DM Mono', monospace;
-          letter-spacing: .08em;
-        }
-
-        @media (max-width: 820px) {
-          .floating-dock {
-            bottom: max(12px, env(safe-area-inset-bottom));
-            padding: 6px;
-            gap: 4px;
-          }
-
-          .dock-link {
-            min-height: 40px;
-            padding: 0 12px;
-            font-size: 11px;
-          }
-
-          .dock-social {
-            width: 37px;
-            height: 37px;
-          }
-
-          .dock-divider { height: 24px; margin-inline: 2px; }
-          .dock-socials { gap: 1px; }
-        }
-
-        @media (max-width: 610px) {
-          .dock-link { padding: 0 10px; }
-          .dock-link:not(.dock-active) span:last-child { display: none; }
-          .dock-active { padding-inline: 13px; }
-          .dock-social { width: 34px; height: 34px; }
-          .dock-socials a:nth-child(1) { display: none; }
-          .dock-divider { margin-inline: 0; }
-        }
-
-        @media (max-width: 430px) {
-          .floating-dock { max-width: calc(100vw - 12px); }
-          .dock-link { padding: 0 9px; }
-          .dock-active { padding-inline: 11px; }
-          .dock-social { width: 32px; height: 32px; }
-        }
-      `}</style>
+      <BottomDock page={page} onNavigate={navigate} />
     </div>
   );
 }
