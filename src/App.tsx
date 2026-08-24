@@ -44,31 +44,13 @@ function XIcon({ size = 20 }: { size?: number }) {
   );
 }
 
-function AboutVisual() {
-  const reducedMotion = useReducedMotion();
-
+function LeetCodeIcon({ size = 20 }: { size?: number }) {
   return (
-    <div className="about-visual" aria-hidden="true">
-      <div className="about-visual-grid" />
-
-      <motion.div
-        className="portrait-frame"
-        animate={reducedMotion ? undefined : { y: [-8, 8, -8], rotate: [-1, 1, -1] }}
-        transition={reducedMotion ? undefined : { duration: 9, repeat: Infinity, ease: 'easeInOut' }}
-      >
-        <div className="portrait-placeholder">
-          <span>GG</span>
-          <small>PORTRAIT / 01</small>
-        </div>
-      </motion.div>
-
-      <span className="floating-label label-a">JAVA / DSA / 550+</span>
-      <span className="floating-label label-b">MYSURU / INDIA</span>
-      <span className="floating-label label-c">BUILD · LEARN · SHIP</span>
-
-      <div className="about-visual-orbit orbit-1" />
-      <div className="about-visual-orbit orbit-2" />
-    </div>
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <path d="M15.2 7.4 11.1 3.3" />
+      <path d="M9.2 4.6 4.9 8.9c-2.2 2.2-2.2 5.8 0 8l2.2 2.2c2.2 2.2 5.8 2.2 8 0l4-4" />
+      <path d="M8.8 12h8.3" />
+    </svg>
   );
 }
 
@@ -149,38 +131,95 @@ function LandingPage() {
       </section>
 
       <section id="about" className="section-frame about-page-section">
-        <div className="section-heading about-heading">
-          <div>
-            <p className="eyebrow">[ 02 / ABOUT ME ]</p>
-            <h2>Engineer first.<br /><em>Human always.</em></h2>
-          </div>
-          <p className="section-intro">
-            A little context before the work: what I care about, what I enjoy building, and the way I approach problems.
+        <div className="about-intro">
+          <p className="eyebrow">[ 02 / ABOUT ME ]</p>
+          <motion.h2
+            className="about-pixel-heading"
+            initial={reducedMotion ? false : { opacity: 0, y: 24 }}
+            whileInView={reducedMotion ? undefined : { opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.7 }}
+          >
+            about me_
+          </motion.h2>
+          <p className="about-intro-line">
+            the person behind the projects, the bugs, and the endless curiosity.
           </p>
         </div>
 
         <div className="about-layout">
-          <AboutVisual />
-
-          <div className="about-copy about-copy-large">
-            <p>
-              I’m Ganesh, a computer science engineer who likes the space between a difficult problem and a surprisingly simple interface.
-            </p>
-
-            <p>
-              I build across frontend, backend, APIs, databases and machine learning experiments. I also spend a lot of time with Java and DSA because I enjoy understanding how things work underneath the surface.
-            </p>
-
-            <p>
-              Outside the code, I’m curious about design, music, sport and anything that makes me look at a familiar problem from a different angle.
-            </p>
-
-            <div className="about-stats">
-              <div><strong>550+</strong><span>coding problems</span></div>
-              <div><strong>9.4</strong><span>CGPA</span></div>
-              <div><strong>∞</strong><span>things to learn</span></div>
+          <motion.div
+            className="about-photo-panel"
+            initial={reducedMotion ? false : { opacity: 0, x: -28 }}
+            whileInView={reducedMotion ? undefined : { opacity: 1, x: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+          >
+            <div className="about-photo-frame">
+              <img
+                src="/about-me.jpg"
+                alt="Ganesh Gowda"
+                className="about-photo"
+                onError={(event) => {
+                  event.currentTarget.style.display = 'none';
+                  event.currentTarget.parentElement?.classList.add('missing-photo');
+                }}
+              />
+              <div className="photo-fallback" aria-hidden="true">
+                <span>YOUR<br />PHOTO</span>
+                <small>DROP / about-me.jpg</small>
+              </div>
+              <div className="photo-index">02 / 01</div>
+              <div className="photo-caption">GANESH GOWDA / COMPUTER SCIENCE</div>
             </div>
-          </div>
+          </motion.div>
+
+          <motion.div
+            className="about-story"
+            initial={reducedMotion ? false : { opacity: 0, x: 28 }}
+            whileInView={reducedMotion ? undefined : { opacity: 1, x: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+          >
+            <p className="story-lead">
+              My relationship with technology started long before I knew I wanted to become a software engineer.
+            </p>
+
+            <p>
+              A lot of it came from games. I was fascinated by the idea that a machine could create these entire worlds, rules and experiences from lines of code and hardware. Whenever something went wrong, I rarely just walked away from it.
+            </p>
+
+            <p>
+              A game would crash. A system would behave strangely. Something on the computer simply would not work. I would spend hours trying one thing, breaking something else, searching for clues, trying again, and slowly narrowing down what was actually happening.
+            </p>
+
+            <p>
+              That trial-and-error mindset stayed with me. Today I get the same satisfaction from debugging an API, figuring out why a React component behaves unexpectedly, designing a backend flow, or finally solving a problem that looked impossible an hour earlier.
+            </p>
+
+            <div className="about-principles">
+              <div>
+                <span>01</span>
+                <strong>curiosity</strong>
+                <p>Ask why before memorising how.</p>
+              </div>
+              <div>
+                <span>02</span>
+                <strong>iteration</strong>
+                <p>Build, break, learn, rebuild.</p>
+              </div>
+              <div>
+                <span>03</span>
+                <strong>craft</strong>
+                <p>Make the result feel as good as it works.</p>
+              </div>
+            </div>
+
+            <div className="about-footer-line">
+              <span>JAVA · DSA · REACT · NODE · SQL · ML</span>
+              <span>STILL LEARNING →</span>
+            </div>
+          </motion.div>
         </div>
       </section>
 
@@ -214,21 +253,10 @@ function WorkbenchPage({ initialSection = 'work' }: { initialSection?: 'work' | 
         <p>Everything I build with, grouped into one focused workspace.</p>
 
         <div className="workbench-tabs" role="tablist" aria-label="Workbench sections">
-          <button
-            className={activeSection === 'work' ? 'workbench-tab active' : 'workbench-tab'}
-            onClick={() => selectSection('work')}
-            role="tab"
-            aria-selected={activeSection === 'work'}
-          >
+          <button className={activeSection === 'work' ? 'workbench-tab active' : 'workbench-tab'} onClick={() => selectSection('work')} role="tab" aria-selected={activeSection === 'work'}>
             Work
           </button>
-
-          <button
-            className={activeSection === 'toolkit' ? 'workbench-tab active' : 'workbench-tab'}
-            onClick={() => selectSection('toolkit')}
-            role="tab"
-            aria-selected={activeSection === 'toolkit'}
-          >
+          <button className={activeSection === 'toolkit' ? 'workbench-tab active' : 'workbench-tab'} onClick={() => selectSection('toolkit')} role="tab" aria-selected={activeSection === 'toolkit'}>
             Toolkit
           </button>
         </div>
@@ -241,21 +269,13 @@ function WorkbenchPage({ initialSection = 'work' }: { initialSection?: 'work' | 
               <p className="eyebrow">[ 03A / PROJECTS ]</p>
               <h2>Things I’ve<br /><em>built.</em></h2>
             </div>
-
-            <p className="section-intro">
-              Projects that combine interface design, APIs, data and machine learning into things I can actually ship.
-            </p>
+            <p className="section-intro">Projects that combine interface design, APIs, data and machine learning into things I can actually ship.</p>
           </div>
 
           <div className="project-stage">
             <div className="project-index">
               {projects.map((project, index) => (
-                <button
-                  key={project.title}
-                  className={index === activeProject ? 'project-tab active' : 'project-tab'}
-                  onClick={() => setActiveProject(index)}
-                  aria-pressed={index === activeProject}
-                >
+                <button key={project.title} className={index === activeProject ? 'project-tab active' : 'project-tab'} onClick={() => setActiveProject(index)} aria-pressed={index === activeProject}>
                   <span>{project.number}</span>
                   <strong>{project.title}</strong>
                   <small>{project.category}</small>
@@ -272,14 +292,7 @@ function WorkbenchPage({ initialSection = 'work' }: { initialSection?: 'work' | 
             >
               <div className="project-visual" aria-hidden="true">
                 <span className="visual-label">LIVE CASE / {projects[activeProject].number}</span>
-
-                <div className="visual-core">
-                  <span />
-                  <span />
-                  <span />
-                  <span />
-                </div>
-
+                <div className="visual-core"><span /><span /><span /><span /></div>
                 <div className="visual-data data-a">REACT<br />API<br />DATA</div>
                 <div className="visual-data data-b">BUILD<br />→<br />SHIP</div>
               </div>
@@ -287,12 +300,7 @@ function WorkbenchPage({ initialSection = 'work' }: { initialSection?: 'work' | 
               <div className="project-copy">
                 <div className="project-topline">
                   <span>{projects[activeProject].category}</span>
-                  <a
-                    href={projects[activeProject].href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label={`Open ${projects[activeProject].title} on GitHub`}
-                  >
+                  <a href={projects[activeProject].href} target="_blank" rel="noopener noreferrer" aria-label={`Open ${projects[activeProject].title} on GitHub`}>
                     <GitHubIcon size={19} />
                     <ExternalLink size={16} />
                   </a>
@@ -302,17 +310,10 @@ function WorkbenchPage({ initialSection = 'work' }: { initialSection?: 'work' | 
                 <p>{projects[activeProject].description}</p>
 
                 <div className="chip-row">
-                  {projects[activeProject].stack.map((item) => (
-                    <span key={item}>{item}</span>
-                  ))}
+                  {projects[activeProject].stack.map((item) => <span key={item}>{item}</span>)}
                 </div>
 
-                <a
-                  className="text-link"
-                  href={projects[activeProject].href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
+                <a className="text-link" href={projects[activeProject].href} target="_blank" rel="noopener noreferrer">
                   Explore repository <ArrowUpRight size={17} />
                 </a>
               </div>
@@ -326,25 +327,12 @@ function WorkbenchPage({ initialSection = 'work' }: { initialSection?: 'work' | 
               <p className="eyebrow">[ 03B / TOOLKIT ]</p>
               <h2>Tools I<br /><em>trust.</em></h2>
             </div>
-
-            <p className="section-intro">
-              A focused map of the languages, frameworks and engineering foundations I use most.
-            </p>
+            <p className="section-intro">A focused map of the languages, frameworks and engineering foundations I use most.</p>
           </div>
 
           <div className="skill-map">
             {skills.map((skill, index) => (
-              <motion.div
-                key={skill.name}
-                className="skill-card"
-                initial={reducedMotion ? false : { opacity: 0, y: 22 }}
-                whileInView={reducedMotion ? undefined : { opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.2 }}
-                transition={{
-                  delay: Math.min(index * 0.025, 0.3),
-                  duration: 0.45,
-                }}
-              >
+              <motion.div key={skill.name} className="skill-card" initial={reducedMotion ? false : { opacity: 0, y: 22 }} whileInView={reducedMotion ? undefined : { opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.2 }} transition={{ delay: Math.min(index * 0.025, 0.3), duration: 0.45 }}>
                 <small>{skill.group}</small>
                 <strong>{skill.name}</strong>
                 <span>{String(index + 1).padStart(2, '0')}</span>
@@ -361,60 +349,26 @@ function WorkbenchPage({ initialSection = 'work' }: { initialSection?: 'work' | 
   );
 }
 
-function BottomDock({
-  page,
-  onNavigate,
-}: {
-  page: 'home' | 'work' | 'toolkit';
-  onNavigate: (page: 'home' | 'work' | 'toolkit') => void;
-}) {
+function BottomDock({ page, onNavigate }: { page: 'home' | 'work' | 'toolkit'; onNavigate: (page: 'home' | 'work' | 'toolkit') => void }) {
   return (
     <nav className="bottom-dock" aria-label="Persistent navigation">
-      <button
-        className={`dock-main ${page === 'home' ? 'active' : ''}`}
-        onClick={() => onNavigate('home')}
-      >
-        <span className="dock-emoji">👨🏻‍💻</span>
+      <button className={`dock-main ${page === 'home' ? 'active' : ''}`} onClick={() => onNavigate('home')}>
+        <span className="dock-emoji">🧑🏻‍💻</span>
         <span>abt me</span>
       </button>
 
-      <button
-        className={`dock-link ${page === 'work' ? 'active' : ''}`}
-        onClick={() => onNavigate('work')}
-      >
+      <button className={`dock-link ${page !== 'home' ? 'active' : ''}`} onClick={() => onNavigate('work')}>
         <span className="dock-arrow">↗</span>
         <span>work</span>
       </button>
 
-      <button
-        className={`dock-link ${page === 'toolkit' ? 'active' : ''}`}
-        onClick={() => onNavigate('toolkit')}
-      >
-        <span className="dock-arrow">↗</span>
-        <span>toolkit</span>
-      </button>
-
       <div className="dock-divider" />
 
-      <a className="dock-icon" href="https://x.com/" target="_blank" rel="noopener noreferrer" aria-label="X / Twitter">
-        <XIcon />
-      </a>
-
-      <a className="dock-icon" href="https://www.instagram.com/ganeshgowda.__/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
-        <InstagramIcon />
-      </a>
-
-      <a className="dock-icon" href="mailto:ganeshgowdam@gmail.com" aria-label="Email">
-        <Mail />
-      </a>
-
-      <a className="dock-icon linkedin-icon" href="https://www.linkedin.com/in/ganesh-gowda-m/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
-        <LinkedInIcon />
-      </a>
-
-      <a className="dock-icon" href="https://github.com/ganesh-gowda" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
-        <GitHubIcon />
-      </a>
+      <a className="dock-icon" href="https://github.com/ganesh-gowda" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><GitHubIcon /></a>
+      <a className="dock-icon linkedin-icon" href="https://www.linkedin.com/in/ganesh-gowda-m/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><LinkedInIcon /></a>
+      <a className="dock-icon" href="https://leetcode.com/" target="_blank" rel="noopener noreferrer" aria-label="LeetCode"><LeetCodeIcon /></a>
+      <a className="dock-icon" href="https://www.instagram.com/ganeshgowda.__/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><InstagramIcon /></a>
+      <a className="dock-icon" href="mailto:ganeshgowdam@gmail.com" aria-label="Email"><Mail /></a>
     </nav>
   );
 }
@@ -422,49 +376,34 @@ function BottomDock({
 export default function App() {
   const [page, setPage] = useState<'home' | 'work' | 'toolkit'>(() => {
     const path = window.location.pathname;
-
     if (path.includes('/workbench/toolkit')) return 'toolkit';
     if (path.includes('/workbench/work')) return 'work';
-
     return 'home';
   });
 
   useEffect(() => {
     const handlePopState = () => {
       const path = window.location.pathname;
-
-      if (path.includes('/workbench/toolkit')) {
-        setPage('toolkit');
-      } else if (path.includes('/workbench/work')) {
-        setPage('work');
-      } else {
-        setPage('home');
-      }
-
+      if (path.includes('/workbench/toolkit')) setPage('toolkit');
+      else if (path.includes('/workbench/work')) setPage('work');
+      else setPage('home');
       window.scrollTo(0, 0);
     };
 
     window.addEventListener('popstate', handlePopState);
-
     return () => window.removeEventListener('popstate', handlePopState);
   }, []);
 
   const navigate = (next: 'home' | 'work' | 'toolkit') => {
     const path = next === 'home' ? '/' : `/workbench/${next}`;
-
     window.history.pushState(null, '', path);
     setPage(next);
-
-    window.scrollTo({
-      top: 0,
-      behavior: 'auto',
-    });
+    window.scrollTo({ top: 0, behavior: 'auto' });
   };
 
   return (
     <div className="site-shell">
       {page === 'home' ? <LandingPage /> : <WorkbenchPage initialSection={page} />}
-
       <BottomDock page={page} onNavigate={navigate} />
     </div>
   );
