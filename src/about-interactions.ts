@@ -7,21 +7,16 @@ type TimelineChapter = {
 const chapters: TimelineChapter[] = [
   {
     label: '01',
-    title: 'GAMES',
-    text: 'My curiosity started with games. I loved seeing a machine create entire worlds, rules and experiences that felt bigger than the screen.',
-  },
-  {
-    label: '02',
     title: 'CURIOSITY',
     text: 'Whenever something broke, I wanted to know why. I would keep digging until the strange behaviour finally made sense.',
   },
   {
-    label: '03',
+    label: '02',
     title: 'TRIAL & ERROR',
     text: 'Crash, search, try again, break something else, rebuild. That cycle taught me to enjoy the process instead of being afraid of the bug.',
   },
   {
-    label: '04',
+    label: '03',
     title: 'ENGINEERING',
     text: 'That same mindset became how I approach software today: DSA, React, APIs, backend systems and everything I am still learning.',
   },
@@ -36,14 +31,14 @@ function enhanceAbout(): void {
 
   section.dataset.aboutEnhanced = 'true';
 
-  // 1. Add the subtle orbital detail around the portrait.
+  // Add the subtle orbital detail around the portrait.
   const orbit = document.createElement('div');
   orbit.className = 'photo-orbit';
   orbit.setAttribute('aria-hidden', 'true');
   orbit.innerHTML = '<span class="orbit-dot orbit-dot-a"></span><span class="orbit-dot orbit-dot-b"></span><span class="orbit-dot orbit-dot-c"></span>';
   photo.appendChild(orbit);
 
-  // 2. Replace the prose block with a scroll-driven story timeline.
+  // Replace the prose block with a scroll-driven story timeline.
   story.querySelectorAll(':scope > p').forEach((node) => {
     node.classList.add('timeline-source');
     node.setAttribute('hidden', 'true');
@@ -85,46 +80,8 @@ function enhanceAbout(): void {
     story.appendChild(timeline);
   }
 
-  // Keep the old principle/footer markup out of the visual story.
   firstPrinciples?.setAttribute('hidden', 'true');
   footerLine?.setAttribute('hidden', 'true');
-
-  // 4. Debugging interaction.
-  const debugLab = document.createElement('div');
-  debugLab.className = 'debug-lab';
-  debugLab.innerHTML = `
-    <button type="button" class="debug-trigger" aria-expanded="false">
-      <span>something isn't working?</span>
-      <strong>investigate →</strong>
-    </button>
-    <div class="debug-output" aria-live="polite">
-      <span class="debug-line">STATUS: UNKNOWN</span>
-      <span class="debug-line">BUG: NOT YET FOUND</span>
-      <span class="debug-line">ACTION: KEEP DIGGING</span>
-    </div>
-  `;
-  story.appendChild(debugLab);
-
-  const debugTrigger = debugLab.querySelector<HTMLButtonElement>('.debug-trigger');
-  debugTrigger?.addEventListener('click', () => {
-    const open = debugLab.classList.toggle('is-open');
-    debugTrigger.setAttribute('aria-expanded', String(open));
-
-    if (open) {
-      debugLab.querySelector('.debug-output')!.innerHTML = `
-        <span class="debug-line">STATUS: CURIOUS</span>
-        <span class="debug-line">BUG: UNKNOWN</span>
-        <span class="debug-line">ACTION: KEEP DIGGING</span>
-        <span class="debug-resolution">STATUS: LEARNING ✓</span>
-      `;
-    } else {
-      debugLab.querySelector('.debug-output')!.innerHTML = `
-        <span class="debug-line">STATUS: UNKNOWN</span>
-        <span class="debug-line">BUG: NOT YET FOUND</span>
-        <span class="debug-line">ACTION: KEEP DIGGING</span>
-      `;
-    }
-  });
 
   // Scroll-driven chapter activation.
   const timelineItems = Array.from(section.querySelectorAll<HTMLElement>('.timeline-item'));
@@ -143,7 +100,7 @@ function enhanceAbout(): void {
   timelineItems.forEach((item) => observer.observe(item));
   timelineItems[0]?.classList.add('is-active');
 
-  // 5. Mouse-reactive ambient glow / depth.
+  // Mouse-reactive ambient glow / depth.
   section.addEventListener('pointermove', (event) => {
     const rect = section.getBoundingClientRect();
     const x = ((event.clientX - rect.left) / rect.width) * 100;
