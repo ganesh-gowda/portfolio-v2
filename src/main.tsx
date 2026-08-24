@@ -4,6 +4,7 @@ import App from './App';
 import './styles.css';
 import './landing.css';
 import './about.css';
+import './typography.css';
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
