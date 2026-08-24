@@ -1,0 +1,89 @@
+/* Sequential cinematic light sweep for the About cards. */
+.about-intro,
+.about-layout,
+.about-story,
+.about-photo-panel {
+  isolation: isolate;
+}
+
+/* The existing diagonal beam becomes a moving highlight per card. */
+.about-intro::after,
+.about-photo-panel::after,
+.about-story::after {
+  content: '';
+  position: absolute;
+  z-index: 3;
+  top: -55%;
+  left: -55%;
+  width: 24%;
+  height: 210%;
+  transform: rotate(18deg);
+  pointer-events: none;
+  opacity: 0;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255,255,255,0) 18%,
+    rgba(255,255,255,.075) 38%,
+    rgba(255,255,255,.24) 50%,
+    rgba(255,255,255,.075) 62%,
+    rgba(255,255,255,0) 82%,
+    transparent 100%
+  );
+  filter: blur(1px);
+  animation: aboutBeamSweep 12s cubic-bezier(.65,.02,.25,1) infinite;
+}
+
+/* Card 01 -> Card 02 left -> Card 02 right. */
+.about-intro::after {
+  animation-delay: 0s;
+}
+
+.about-photo-panel::after {
+  animation-delay: 4s;
+}
+
+.about-story::after {
+  animation-delay: 8s;
+}
+
+@keyframes aboutBeamSweep {
+  0%, 16% {
+    left: -55%;
+    opacity: 0;
+  }
+  22% {
+    opacity: .18;
+  }
+  38% {
+    left: 60%;
+    opacity: .95;
+  }
+  48% {
+    left: 125%;
+    opacity: .08;
+  }
+  100% {
+    left: 125%;
+    opacity: 0;
+  }
+}
+
+/* Keep the beam above the card surface but below its content. */
+.about-intro > *,
+.about-layout > *,
+.about-photo-panel > *,
+.about-story > * {
+  position: relative;
+  z-index: 4;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .about-intro::after,
+  .about-photo-panel::after,
+  .about-story::after {
+    animation: none;
+    left: 26%;
+    opacity: .12;
+  }
+}
