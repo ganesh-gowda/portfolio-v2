@@ -7,7 +7,7 @@ import {
   Menu,
   X,
 } from 'lucide-react';
-import { motion, useReducedMotion, useScroll, useTransform } from 'framer-motion';
+import { motion, useReducedMotion } from 'framer-motion';
 import { projects, skills } from './data';
 
 function GitHubIcon({ size = 20 }: { size?: number }) {
@@ -46,9 +46,11 @@ function XIcon({ size = 20 }: { size?: number }) {
 
 function AboutVisual() {
   const reducedMotion = useReducedMotion();
+
   return (
     <div className="about-visual" aria-hidden="true">
       <div className="about-visual-grid" />
+
       <motion.div
         className="portrait-frame"
         animate={reducedMotion ? undefined : { y: [-8, 8, -8], rotate: [-1, 1, -1] }}
@@ -59,9 +61,11 @@ function AboutVisual() {
           <small>PORTRAIT / 01</small>
         </div>
       </motion.div>
+
       <span className="floating-label label-a">JAVA / DSA / 550+</span>
       <span className="floating-label label-b">MYSURU / INDIA</span>
       <span className="floating-label label-c">BUILD · LEARN · SHIP</span>
+
       <div className="about-visual-orbit orbit-1" />
       <div className="about-visual-orbit orbit-2" />
     </div>
@@ -70,87 +74,78 @@ function AboutVisual() {
 
 function LandingPage() {
   const reducedMotion = useReducedMotion();
-  const { scrollYProgress } = useScroll();
-  const heroScale = useTransform(scrollYProgress, [0, 0.28], [1, 1.12]);
-  const heroY = useTransform(scrollYProgress, [0, 0.35], [0, 100]);
-  const heroOpacity = useTransform(scrollYProgress, [0, 0.22], [1, 0.22]);
+
+  const words = [
+    ['CREATE', 'word-a'],
+    ['BREAK', 'word-b'],
+    ['BUILD', 'word-c'],
+    ['SOLVE', 'word-d'],
+    ['LEARN', 'word-e'],
+    ['REPEAT', 'word-f'],
+  ];
 
   return (
-    <main>
-      <section id="hero" className="hero section-frame landing-hero">
-        <motion.div className="hero-word-cloud" aria-hidden="true">
-          {[
-            ['BUILD', 'word-a'],
-            ['SOLVE', 'word-b'],
-            ['CREATE', 'word-c'],
-            ['LEARN', 'word-d'],
-            ['BREAK', 'word-e'],
-            ['REPEAT', 'word-f'],
-          ].map(([word, className], index) => (
+    <main className="landing-page">
+      <section id="hero" className="landing-hero section-frame">
+        <div className="landing-photo" aria-hidden="true" />
+        <div className="landing-vignette" aria-hidden="true" />
+        <div className="landing-scanlines" aria-hidden="true" />
+        <div className="landing-grain" aria-hidden="true" />
+
+        <motion.div className="landing-words" aria-hidden="true">
+          {words.map(([word, className], index) => (
             <motion.span
               key={word}
-              className={`hero-word ${className}`}
-              initial={{ opacity: 0, y: 30, filter: 'blur(14px)' }}
-              animate={{ opacity: 0.32, y: 0, filter: 'blur(0px)' }}
-              transition={{ delay: 0.15 + index * 0.12, duration: 0.9 }}
+              className={`landing-word ${className}`}
+              initial={reducedMotion ? false : { opacity: 0, y: 18, filter: 'blur(10px)' }}
+              animate={reducedMotion ? undefined : { opacity: 0.38, y: 0, filter: 'blur(0px)' }}
+              transition={{ delay: 0.15 + index * 0.13, duration: 0.8 }}
             >
               {word}
             </motion.span>
           ))}
         </motion.div>
 
-        <motion.div
-          className="hero-orbit hero-orbit-a"
-          animate={reducedMotion ? undefined : { rotate: 360 }}
-          transition={reducedMotion ? undefined : { duration: 28, repeat: Infinity, ease: 'linear' }}
-          aria-hidden="true"
-        />
-        <motion.div
-          className="hero-orbit hero-orbit-b"
-          animate={reducedMotion ? undefined : { rotate: -360 }}
-          transition={reducedMotion ? undefined : { duration: 44, repeat: Infinity, ease: 'linear' }}
-          aria-hidden="true"
-        />
-        <motion.div
-          className="hero-field"
-          style={reducedMotion ? undefined : { scale: heroScale, y: heroY, opacity: heroOpacity }}
-          aria-hidden="true"
-        >
-          <div className="field-noise" />
-          <div className="field-grid" />
-          <div className="field-glow glow-one" />
-          <div className="field-glow glow-two" />
-        </motion.div>
+        <div className="landing-copy">
+          <motion.p
+            className="landing-name"
+            initial={reducedMotion ? false : { opacity: 0, y: 14 }}
+            animate={reducedMotion ? undefined : { opacity: 1, y: 0 }}
+            transition={{ delay: 0.25, duration: 0.8 }}
+          >
+            hi, i'm
+          </motion.p>
 
-        <div className="hero-inner">
-          <p className="eyebrow">[ 01 / ENTRY ]</p>
-          <div className="hero-centerpiece">
-            <motion.p
-              className="hero-kicker"
-              initial={reducedMotion ? false : { opacity: 0, y: 16 }}
-              animate={reducedMotion ? undefined : { opacity: 1, y: 0 }}
-              transition={{ delay: 0.6, duration: 0.7 }}
-            >
-              computer science · software engineering · curiosity
-            </motion.p>
-            <motion.h1
-              initial={reducedMotion ? false : { opacity: 0, scale: 0.92, y: 24 }}
-              animate={reducedMotion ? undefined : { opacity: 1, scale: 1, y: 0 }}
-              transition={{ delay: 0.35, duration: 1.15, ease: [0.16, 1, 0.3, 1] }}
-            >
-              GANESH
-              <br />
-              <span>GOWDA</span>
-            </motion.h1>
-            <p className="hero-manifesto">I make interfaces feel alive and turn messy problems into working systems.</p>
-          </div>
-          <div className="hero-bottom">
-            <span>SCROLL TO MEET THE ENGINEER</span>
-            <button className="circle-action" onClick={() => document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' })} aria-label="Scroll to about">
-              <ArrowDownRight size={22} />
-            </button>
-          </div>
+          <motion.h1
+            className="landing-title"
+            initial={reducedMotion ? false : { opacity: 0, y: 34, scale: 0.98 }}
+            animate={reducedMotion ? undefined : { opacity: 1, y: 0, scale: 1 }}
+            transition={{ delay: 0.4, duration: 1, ease: [0.16, 1, 0.3, 1] }}
+          >
+            ganesh gowda.
+          </motion.h1>
+
+          <motion.p
+            className="landing-subtitle"
+            initial={reducedMotion ? false : { opacity: 0 }}
+            animate={reducedMotion ? undefined : { opacity: 1 }}
+            transition={{ delay: 0.95, duration: 0.9 }}
+          >
+            engineer · designer · shipper
+          </motion.p>
         </div>
+
+        <motion.button
+          className="landing-scroll-cue"
+          onClick={() => document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' })}
+          initial={reducedMotion ? false : { opacity: 0, y: 8 }}
+          animate={reducedMotion ? undefined : { opacity: 1, y: 0 }}
+          transition={{ delay: 1.1, duration: 0.6 }}
+          aria-label="Scroll to About Me"
+        >
+          <span>scroll ↓</span>
+          <span className="landing-scroll-line" />
+        </motion.button>
       </section>
 
       <section id="about" className="section-frame about-page-section">
@@ -159,15 +154,26 @@ function LandingPage() {
             <p className="eyebrow">[ 02 / ABOUT ME ]</p>
             <h2>Engineer first.<br /><em>Human always.</em></h2>
           </div>
-          <p className="section-intro">A little context before the work: what I care about, what I enjoy building, and the way I approach problems.</p>
+          <p className="section-intro">
+            A little context before the work: what I care about, what I enjoy building, and the way I approach problems.
+          </p>
         </div>
 
         <div className="about-layout">
           <AboutVisual />
+
           <div className="about-copy about-copy-large">
-            <p>I’m Ganesh, a computer science engineer who likes the space between a difficult problem and a surprisingly simple interface.</p>
-            <p>I build across frontend, backend, APIs, databases and machine learning experiments. I also spend a lot of time with Java and DSA because I enjoy understanding how things work underneath the surface.</p>
-            <p>Outside the code, I’m curious about design, music, sport and anything that makes me look at a familiar problem from a different angle.</p>
+            <p>
+              I’m Ganesh, a computer science engineer who likes the space between a difficult problem and a surprisingly simple interface.
+            </p>
+
+            <p>
+              I build across frontend, backend, APIs, databases and machine learning experiments. I also spend a lot of time with Java and DSA because I enjoy understanding how things work underneath the surface.
+            </p>
+
+            <p>
+              Outside the code, I’m curious about design, music, sport and anything that makes me look at a familiar problem from a different angle.
+            </p>
 
             <div className="about-stats">
               <div><strong>550+</strong><span>coding problems</span></div>
@@ -186,9 +192,9 @@ function LandingPage() {
 }
 
 function WorkbenchPage({ initialSection = 'work' }: { initialSection?: 'work' | 'toolkit' }) {
-  const [activeSection, setActiveSection] = useState(initialSection);
-  const reducedMotion = useReducedMotion();
+  const [activeSection, setActiveSection] = useState<'work' | 'toolkit'>(initialSection);
   const [activeProject, setActiveProject] = useState(0);
+  const reducedMotion = useReducedMotion();
 
   useEffect(() => {
     setActiveSection(initialSection);
@@ -204,16 +210,25 @@ function WorkbenchPage({ initialSection = 'work' }: { initialSection?: 'work' | 
     <main className="workbench-page">
       <section className="workbench-hero section-frame">
         <p className="eyebrow">[ 03 / WORKBENCH ]</p>
-        <h1>
-          Work <em>&</em><br />Toolkit
-        </h1>
+        <h1>Work <em>&</em><br />Toolkit</h1>
         <p>Everything I build with, grouped into one focused workspace.</p>
 
         <div className="workbench-tabs" role="tablist" aria-label="Workbench sections">
-          <button className={activeSection === 'work' ? 'workbench-tab active' : 'workbench-tab'} onClick={() => selectSection('work')} role="tab" aria-selected={activeSection === 'work'}>
+          <button
+            className={activeSection === 'work' ? 'workbench-tab active' : 'workbench-tab'}
+            onClick={() => selectSection('work')}
+            role="tab"
+            aria-selected={activeSection === 'work'}
+          >
             Work
           </button>
-          <button className={activeSection === 'toolkit' ? 'workbench-tab active' : 'workbench-tab'} onClick={() => selectSection('toolkit')} role="tab" aria-selected={activeSection === 'toolkit'}>
+
+          <button
+            className={activeSection === 'toolkit' ? 'workbench-tab active' : 'workbench-tab'}
+            onClick={() => selectSection('toolkit')}
+            role="tab"
+            aria-selected={activeSection === 'toolkit'}
+          >
             Toolkit
           </button>
         </div>
@@ -226,13 +241,21 @@ function WorkbenchPage({ initialSection = 'work' }: { initialSection?: 'work' | 
               <p className="eyebrow">[ 03A / PROJECTS ]</p>
               <h2>Things I’ve<br /><em>built.</em></h2>
             </div>
-            <p className="section-intro">Projects that combine interface design, APIs, data and machine learning into things I can actually ship.</p>
+
+            <p className="section-intro">
+              Projects that combine interface design, APIs, data and machine learning into things I can actually ship.
+            </p>
           </div>
 
           <div className="project-stage">
             <div className="project-index">
               {projects.map((project, index) => (
-                <button key={project.title} className={index === activeProject ? 'project-tab active' : 'project-tab'} onClick={() => setActiveProject(index)} aria-pressed={index === activeProject}>
+                <button
+                  key={project.title}
+                  className={index === activeProject ? 'project-tab active' : 'project-tab'}
+                  onClick={() => setActiveProject(index)}
+                  aria-pressed={index === activeProject}
+                >
                   <span>{project.number}</span>
                   <strong>{project.title}</strong>
                   <small>{project.category}</small>
@@ -249,22 +272,49 @@ function WorkbenchPage({ initialSection = 'work' }: { initialSection?: 'work' | 
             >
               <div className="project-visual" aria-hidden="true">
                 <span className="visual-label">LIVE CASE / {projects[activeProject].number}</span>
-                <div className="visual-core"><span /><span /><span /><span /></div>
+
+                <div className="visual-core">
+                  <span />
+                  <span />
+                  <span />
+                  <span />
+                </div>
+
                 <div className="visual-data data-a">REACT<br />API<br />DATA</div>
                 <div className="visual-data data-b">BUILD<br />→<br />SHIP</div>
               </div>
+
               <div className="project-copy">
                 <div className="project-topline">
                   <span>{projects[activeProject].category}</span>
-                  <a href={projects[activeProject].href} target="_blank" rel="noopener noreferrer" aria-label={`Open ${projects[activeProject].title} on GitHub`}>
+                  <a
+                    href={projects[activeProject].href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={`Open ${projects[activeProject].title} on GitHub`}
+                  >
                     <GitHubIcon size={19} />
                     <ExternalLink size={16} />
                   </a>
                 </div>
+
                 <h3>{projects[activeProject].title}</h3>
                 <p>{projects[activeProject].description}</p>
-                <div className="chip-row">{projects[activeProject].stack.map((item) => <span key={item}>{item}</span>)}</div>
-                <a className="text-link" href={projects[activeProject].href} target="_blank" rel="noopener noreferrer">Explore repository <ArrowUpRight size={17} /></a>
+
+                <div className="chip-row">
+                  {projects[activeProject].stack.map((item) => (
+                    <span key={item}>{item}</span>
+                  ))}
+                </div>
+
+                <a
+                  className="text-link"
+                  href={projects[activeProject].href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Explore repository <ArrowUpRight size={17} />
+                </a>
               </div>
             </motion.article>
           </div>
@@ -276,11 +326,25 @@ function WorkbenchPage({ initialSection = 'work' }: { initialSection?: 'work' | 
               <p className="eyebrow">[ 03B / TOOLKIT ]</p>
               <h2>Tools I<br /><em>trust.</em></h2>
             </div>
-            <p className="section-intro">A focused map of the languages, frameworks and engineering foundations I use most.</p>
+
+            <p className="section-intro">
+              A focused map of the languages, frameworks and engineering foundations I use most.
+            </p>
           </div>
+
           <div className="skill-map">
             {skills.map((skill, index) => (
-              <motion.div key={skill.name} className="skill-card" initial={reducedMotion ? false : { opacity: 0, y: 22 }} whileInView={reducedMotion ? undefined : { opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.2 }} transition={{ delay: Math.min(index * 0.025, 0.3), duration: 0.45 }}>
+              <motion.div
+                key={skill.name}
+                className="skill-card"
+                initial={reducedMotion ? false : { opacity: 0, y: 22 }}
+                whileInView={reducedMotion ? undefined : { opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.2 }}
+                transition={{
+                  delay: Math.min(index * 0.025, 0.3),
+                  duration: 0.45,
+                }}
+              >
                 <small>{skill.group}</small>
                 <strong>{skill.name}</strong>
                 <span>{String(index + 1).padStart(2, '0')}</span>
@@ -297,26 +361,60 @@ function WorkbenchPage({ initialSection = 'work' }: { initialSection?: 'work' | 
   );
 }
 
-function BottomDock({ page, onNavigate }: { page: 'home' | 'work' | 'toolkit'; onNavigate: (page: 'home' | 'work' | 'toolkit') => void }) {
+function BottomDock({
+  page,
+  onNavigate,
+}: {
+  page: 'home' | 'work' | 'toolkit';
+  onNavigate: (page: 'home' | 'work' | 'toolkit') => void;
+}) {
   return (
     <nav className="bottom-dock" aria-label="Persistent navigation">
-      <button className={`dock-main ${page === 'home' ? 'active' : ''}`} onClick={() => onNavigate('home')}>
-        <span className="dock-emoji">🧑🏻‍💻</span>
+      <button
+        className={`dock-main ${page === 'home' ? 'active' : ''}`}
+        onClick={() => onNavigate('home')}
+      >
+        <span className="dock-emoji">👨🏻‍💻</span>
         <span>abt me</span>
       </button>
 
-      <button className={`dock-link ${page === 'work' ? 'active' : ''}`} onClick={() => onNavigate('work')}>
+      <button
+        className={`dock-link ${page === 'work' ? 'active' : ''}`}
+        onClick={() => onNavigate('work')}
+      >
         <span className="dock-arrow">↗</span>
         <span>work</span>
       </button>
 
+      <button
+        className={`dock-link ${page === 'toolkit' ? 'active' : ''}`}
+        onClick={() => onNavigate('toolkit')}
+      >
+        <span className="dock-arrow">↗</span>
+        <span>toolkit</span>
+      </button>
+
       <div className="dock-divider" />
 
-      <a className="dock-icon" href="https://x.com/" target="_blank" rel="noopener noreferrer" aria-label="X / Twitter"><XIcon /></a>
-      <a className="dock-icon" href="https://www.instagram.com/ganeshgowda.__/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><InstagramIcon /></a>
-      <a className="dock-icon" href="mailto:ganeshgowdam@gmail.com" aria-label="Email"><Mail /></a>
-      <a className="dock-icon linkedin-icon" href="https://www.linkedin.com/in/ganesh-gowda-m/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><LinkedInIcon /></a>
-      <a className="dock-icon" href="https://github.com/ganesh-gowda" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><GitHubIcon /></a>
+      <a className="dock-icon" href="https://x.com/" target="_blank" rel="noopener noreferrer" aria-label="X / Twitter">
+        <XIcon />
+      </a>
+
+      <a className="dock-icon" href="https://www.instagram.com/ganeshgowda.__/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+        <InstagramIcon />
+      </a>
+
+      <a className="dock-icon" href="mailto:ganeshgowdam@gmail.com" aria-label="Email">
+        <Mail />
+      </a>
+
+      <a className="dock-icon linkedin-icon" href="https://www.linkedin.com/in/ganesh-gowda-m/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+        <LinkedInIcon />
+      </a>
+
+      <a className="dock-icon" href="https://github.com/ganesh-gowda" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+        <GitHubIcon />
+      </a>
     </nav>
   );
 }
@@ -324,39 +422,48 @@ function BottomDock({ page, onNavigate }: { page: 'home' | 'work' | 'toolkit'; o
 export default function App() {
   const [page, setPage] = useState<'home' | 'work' | 'toolkit'>(() => {
     const path = window.location.pathname;
+
     if (path.includes('/workbench/toolkit')) return 'toolkit';
     if (path.includes('/workbench/work')) return 'work';
+
     return 'home';
   });
 
   useEffect(() => {
     const handlePopState = () => {
       const path = window.location.pathname;
-      if (path.includes('/workbench/toolkit')) setPage('toolkit');
-      else if (path.includes('/workbench/work')) setPage('work');
-      else setPage('home');
+
+      if (path.includes('/workbench/toolkit')) {
+        setPage('toolkit');
+      } else if (path.includes('/workbench/work')) {
+        setPage('work');
+      } else {
+        setPage('home');
+      }
+
       window.scrollTo(0, 0);
     };
 
     window.addEventListener('popstate', handlePopState);
+
     return () => window.removeEventListener('popstate', handlePopState);
   }, []);
 
   const navigate = (next: 'home' | 'work' | 'toolkit') => {
     const path = next === 'home' ? '/' : `/workbench/${next}`;
+
     window.history.pushState(null, '', path);
     setPage(next);
-    window.scrollTo({ top: 0, behavior: 'auto' });
+
+    window.scrollTo({
+      top: 0,
+      behavior: 'auto',
+    });
   };
 
   return (
     <div className="site-shell">
       {page === 'home' ? <LandingPage /> : <WorkbenchPage initialSection={page} />}
-
-      <footer className="footer">
-        <span>GG / PORTFOLIO 2026</span>
-        <span>BUILT WITH CURIOSITY · SHIPPED WITH CARE</span>
-      </footer>
 
       <BottomDock page={page} onNavigate={navigate} />
     </div>
