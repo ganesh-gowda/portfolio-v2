@@ -1,0 +1,92 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&family=Syne:wght@400;500;600;700;800&display=swap');
+
+/* Display / editorial */
+.landing-name,
+.landing-title,
+.about-heading h2,
+.workbench-hero h1,
+.section-heading h2,
+.about-copy h2,
+.contact-section h2 {
+  font-family: 'Syne', sans-serif !important;
+}
+
+.landing-title {
+  font-weight: 700;
+  letter-spacing: -0.045em;
+  line-height: 0.94;
+}
+
+.landing-name {
+  font-weight: 500;
+  letter-spacing: -0.02em;
+}
+
+.landing-word {
+  font-family: 'DM Mono', monospace !important;
+  font-weight: 500;
+  letter-spacing: 0.13em;
+}
+
+/* Clean geometric text */
+.landing-subtitle,
+.hero-manifesto,
+.about-copy-large > p,
+.section-intro,
+.workbench-hero > p,
+.project-copy p,
+.contact-side p,
+.footer,
+.dock-main,
+.dock-link {
+  font-family: 'Space Grotesk', sans-serif;
+}
+
+/* Engineering / metadata layer */
+.eyebrow,
+.hero-kicker,
+.hero-role,
+.landing-scroll-cue,
+.floating-label,
+.about-stats span,
+.project-topline,
+.chip-row span,
+.text-link,
+.visual-label,
+.visual-data,
+.skill-card small,
+.skill-card span,
+.workbench-tabs,
+.workbench-foot,
+.dock-icon {
+  font-family: 'DM Mono', monospace !important;
+}
+
+.about-heading h2,
+.section-heading h2,
+.about-copy h2,
+.contact-section h2 {
+  letter-spacing: -0.045em;
+}
+
+.about-copy-large > p {
+  letter-spacing: -0.01em;
+}
+
+.about-stats strong {
+  font-family: 'Syne', sans-serif !important;
+  font-weight: 700;
+  letter-spacing: -0.035em;
+}
+
+.skill-card strong,
+.project-tab strong,
+.project-copy h3 {
+  font-family: 'Space Grotesk', sans-serif !important;
+}
+
+@media (max-width: 760px) {
+  .landing-title {
+    letter-spacing: -0.035em;
+  }
+}
