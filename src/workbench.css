@@ -1,0 +1,340 @@
+/* Workbench: an original take on the editorial structure we referenced. */
+.workbench-page {
+  --work-blue: #5aa7ff;
+  --work-blue-soft: rgba(90, 167, 255, .16);
+  --work-white: rgba(244,241,235,.92);
+  --work-muted: rgba(244,241,235,.52);
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 12% 18%, rgba(62,129,255,.08), transparent 28%),
+    radial-gradient(circle at 86% 42%, rgba(43,103,255,.07), transparent 30%),
+    #070708;
+}
+
+.workbench-hero {
+  min-height: 76svh;
+  padding-top: 150px;
+  padding-bottom: 72px;
+  justify-content: flex-end;
+  position: relative;
+}
+
+.workbench-hero::before {
+  content: '';
+  position: absolute;
+  inset: 12% -10% auto;
+  height: 34rem;
+  background: radial-gradient(ellipse at center, rgba(67,134,255,.12), transparent 64%);
+  filter: blur(34px);
+  pointer-events: none;
+}
+
+.workbench-hero h1 {
+  position: relative;
+  z-index: 1;
+  font-family: 'Silkscreen', monospace;
+  font-size: clamp(70px, 13vw, 170px);
+  letter-spacing: -.045em;
+  line-height: .82;
+  text-transform: lowercase;
+}
+
+.workbench-hero h1 em {
+  color: var(--work-blue);
+}
+
+.workbench-hero > p:last-of-type {
+  position: relative;
+  z-index: 1;
+  max-width: 560px;
+  font-family: 'Syne', sans-serif;
+  color: rgba(244,241,235,.58);
+}
+
+.workbench-tabs {
+  position: relative;
+  z-index: 2;
+}
+
+.workbench-tab.active {
+  background: rgba(90,167,255,.14);
+  color: #fff;
+  border: 1px solid rgba(90,167,255,.32);
+  box-shadow: 0 0 28px rgba(90,167,255,.08);
+}
+
+/* Toolkit follows the reference structure: heading + one moving tech rail. */
+.stack-section {
+  position: relative;
+  overflow: hidden;
+  padding-top: 20px;
+  padding-bottom: 80px;
+}
+
+.stack-section::before {
+  content: '';
+  position: absolute;
+  left: -12%;
+  right: -12%;
+  top: 34%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,.12), transparent);
+  pointer-events: none;
+}
+
+.stack-section .section-heading {
+  grid-template-columns: minmax(220px, .32fr) minmax(0, 1fr);
+  align-items: end;
+  gap: 40px;
+  margin-bottom: 28px;
+}
+
+.stack-section .section-heading h2 {
+  font-family: 'Silkscreen', monospace;
+  font-size: clamp(48px, 7vw, 94px);
+  line-height: .88;
+  letter-spacing: -.04em;
+}
+
+.stack-section .section-heading h2 em {
+  color: var(--work-blue);
+}
+
+.stack-section .section-intro {
+  max-width: 460px;
+  margin-left: auto;
+  font-family: 'Syne', sans-serif;
+}
+
+.skill-map {
+  display: flex;
+  width: max-content;
+  gap: 10px;
+  align-items: center;
+  padding: 12px 0;
+  will-change: transform;
+  animation: toolkitRail 30s linear infinite;
+}
+
+.skill-map:hover {
+  animation-play-state: paused;
+}
+
+.skill-card {
+  position: relative;
+  flex: 0 0 auto;
+  width: auto;
+  min-width: 150px;
+  height: 58px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 0 18px;
+  border: 1px solid rgba(255,255,255,.11);
+  border-radius: 999px;
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.025)),
+    rgba(10,13,20,.78);
+  box-shadow:
+    inset 0 1px rgba(255,255,255,.08),
+    0 15px 32px rgba(0,0,0,.16);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+}
+
+.skill-card small {
+  display: none;
+}
+
+.skill-card strong {
+  color: rgba(255,255,255,.9);
+  font: 600 14px 'Syne', sans-serif;
+  white-space: nowrap;
+}
+
+.skill-card > span {
+  display: grid;
+  place-items: center;
+  min-width: 24px;
+  height: 24px;
+  margin-left: auto;
+  border-radius: 50%;
+  border: 1px solid rgba(90,167,255,.25);
+  color: rgba(158,202,255,.78);
+  font: 500 8px 'DM Mono', monospace;
+}
+
+@keyframes toolkitRail {
+  from { transform: translate3d(0,0,0); }
+  to { transform: translate3d(-50%,0,0); }
+}
+
+/* Build log: retain the useful project selector, but make it read like an editorial ledger. */
+.work-section {
+  padding-top: 52px;
+  padding-bottom: 100px;
+}
+
+.work-section .section-heading {
+  margin-bottom: 44px;
+}
+
+.work-section .section-heading h2 {
+  font-family: 'Silkscreen', monospace;
+  font-size: clamp(58px, 8vw, 110px);
+  letter-spacing: -.045em;
+  line-height: .86;
+}
+
+.work-section .section-heading h2 em {
+  color: var(--work-blue);
+}
+
+.project-stage {
+  grid-template-columns: minmax(180px, 260px) minmax(0,1fr);
+  gap: 16px;
+}
+
+.project-index {
+  position: relative;
+  border-top: 1px solid rgba(255,255,255,.12);
+  border-bottom: 1px solid rgba(255,255,255,.12);
+}
+
+.project-tab {
+  min-height: 92px;
+  padding: 18px 0;
+  grid-template-columns: 30px minmax(0,1fr);
+  gap: 6px 12px;
+}
+
+.project-tab span {
+  color: rgba(158,202,255,.54);
+}
+
+.project-tab strong {
+  font-family: 'Syne', sans-serif;
+  font-size: 15px;
+  transition: color .25s ease, transform .25s ease;
+}
+
+.project-tab small {
+  font-family: 'DM Mono', monospace;
+}
+
+.project-tab:hover strong,
+.project-tab.active strong {
+  color: #9ecaff;
+  transform: translateX(4px);
+}
+
+.project-tab.active {
+  background: linear-gradient(90deg, rgba(90,167,255,.08), transparent);
+}
+
+.project-feature {
+  min-height: 560px;
+  border: 1px solid rgba(255,255,255,.11);
+  background:
+    linear-gradient(140deg, rgba(255,255,255,.06), rgba(255,255,255,.018)),
+    rgba(7,10,16,.76);
+  box-shadow: 0 30px 80px rgba(0,0,0,.22);
+}
+
+.project-visual {
+  min-height: 100%;
+}
+
+.project-copy {
+  position: relative;
+  padding: clamp(28px, 4vw, 52px);
+}
+
+.project-copy h3 {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(36px, 4vw, 62px);
+  line-height: .92;
+  letter-spacing: -.04em;
+}
+
+.project-copy p {
+  font-family: 'Syne', sans-serif;
+  color: rgba(244,241,235,.62);
+  line-height: 1.8;
+}
+
+.chip-row span {
+  border-color: rgba(90,167,255,.18);
+  background: rgba(90,167,255,.06);
+}
+
+.text-link {
+  color: #9ecaff;
+}
+
+.workbench-foot {
+  padding-top: 40px;
+}
+
+@media (max-width: 900px) {
+  .stack-section .section-heading {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .stack-section .section-intro {
+    margin-left: 0;
+  }
+
+  .project-stage {
+    grid-template-columns: 1fr;
+  }
+
+  .project-index {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0,1fr));
+    border-bottom: 0;
+  }
+
+  .project-tab {
+    padding: 16px;
+    border: 1px solid rgba(255,255,255,.08);
+  }
+}
+
+@media (max-width: 620px) {
+  .workbench-hero {
+    min-height: 72svh;
+    padding-top: 120px;
+  }
+
+  .skill-card {
+    min-width: 132px;
+    height: 52px;
+    padding-inline: 15px;
+  }
+
+  .skill-card strong {
+    font-size: 12px;
+  }
+
+  .project-index {
+    grid-template-columns: 1fr;
+  }
+
+  .project-feature {
+    grid-template-columns: 1fr;
+  }
+
+  .project-visual {
+    min-height: 280px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .skill-map {
+    animation: none;
+    width: 100%;
+    flex-wrap: wrap;
+  }
+}
