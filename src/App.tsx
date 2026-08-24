@@ -1,11 +1,8 @@
 import { useEffect, useState } from 'react';
 import {
-  ArrowDownRight,
   ArrowUpRight,
   ExternalLink,
   Mail,
-  Menu,
-  X,
 } from 'lucide-react';
 import { motion, useReducedMotion } from 'framer-motion';
 import { projects, skills } from './data';
@@ -13,7 +10,7 @@ import { projects, skills } from './data';
 function GitHubIcon({ size = 20 }: { size?: number }) {
   return (
     <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-      <path d="M12 .5a11.5 11.5 0 0 0-3.64 22.41c.58.1.79-.25.79-.56v-2.17c-3.22.7-3.9-1.37-3.9-1.37-.53-1.34-1.29-1.7-1.29-1.7-1.05-.72.08-.71.08-.71 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.57-.29-5.27-1.29-5.27-5.72 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.47.11-3.06 0 0 .97-.31 3.17 1.18A10.9 10.9 0 0 1 12 5.4c.98 0 1.96.13 2.88.39 2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.77.11 3.06.74.81 1.19 1.84 1.19 3.1 0 4.44-2.7 5.42-5.28 5.71.41.36.78 1.08.78 2.18v3.23c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .5Z" />
+      <path d="M12 .5a11.5 11.5 0 0 0-3.64 22.41c.58.1.79-.25.79-.56v-2.17c-3.22.7-3.9-1.37-3.9-1.37-.53-1.34-1.29-1.7-1.29-1.7-1.05-.72.08-.71.08-.71 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.57-.29-5.27-1.29-5.27-5.72 0-1.26.45-2.29 1.19-3.1.74.81 1.19 1.84 1.19 3.1 0 4.44-2.7 5.42-5.28 5.71.41.36.78 1.08.78 2.18v3.23c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .5Z" />
     </svg>
   );
 }
@@ -32,14 +29,6 @@ function InstagramIcon({ size = 20 }: { size?: number }) {
       <rect x="3" y="3" width="18" height="18" rx="5" />
       <circle cx="12" cy="12" r="4" />
       <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none" />
-    </svg>
-  );
-}
-
-function XIcon({ size = 20 }: { size?: number }) {
-  return (
-    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" aria-hidden="true">
-      <path d="M5 4l14 16M19 4L5 20" />
     </svg>
   );
 }
@@ -184,37 +173,20 @@ function LandingPage() {
             <p className="story-lead">
               My relationship with technology started long before I knew I wanted to become a software engineer.
             </p>
-
             <p>
               A lot of it came from games. I was fascinated by the idea that a machine could create these entire worlds, rules and experiences from lines of code and hardware. Whenever something went wrong, I rarely just walked away from it.
             </p>
-
             <p>
               A game would crash. A system would behave strangely. Something on the computer simply would not work. I would spend hours trying one thing, breaking something else, searching for clues, trying again, and slowly narrowing down what was actually happening.
             </p>
-
             <p>
               That trial-and-error mindset stayed with me. Today I get the same satisfaction from debugging an API, figuring out why a React component behaves unexpectedly, designing a backend flow, or finally solving a problem that looked impossible an hour earlier.
             </p>
-
             <div className="about-principles">
-              <div>
-                <span>01</span>
-                <strong>curiosity</strong>
-                <p>Ask why before memorising how.</p>
-              </div>
-              <div>
-                <span>02</span>
-                <strong>iteration</strong>
-                <p>Build, break, learn, rebuild.</p>
-              </div>
-              <div>
-                <span>03</span>
-                <strong>craft</strong>
-                <p>Make the result feel as good as it works.</p>
-              </div>
+              <div><span>01</span><strong>curiosity</strong><p>Ask why before memorising how.</p></div>
+              <div><span>02</span><strong>iteration</strong><p>Build, break, learn, rebuild.</p></div>
+              <div><span>03</span><strong>craft</strong><p>Make the result feel as good as it works.</p></div>
             </div>
-
             <div className="about-footer-line">
               <span>JAVA · DSA · REACT · NODE · SQL · ML</span>
               <span>STILL LEARNING →</span>
@@ -230,140 +202,124 @@ function LandingPage() {
   );
 }
 
-function WorkbenchPage({ initialSection = 'work' }: { initialSection?: 'work' | 'toolkit' }) {
-  const [activeSection, setActiveSection] = useState<'work' | 'toolkit'>(initialSection);
+function WorkbenchPage() {
   const [activeProject, setActiveProject] = useState(0);
   const reducedMotion = useReducedMotion();
-
-  useEffect(() => {
-    setActiveSection(initialSection);
-  }, [initialSection]);
-
-  const selectSection = (section: 'work' | 'toolkit') => {
-    setActiveSection(section);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-    window.history.replaceState(null, '', `/workbench/${section}`);
-  };
 
   return (
     <main className="workbench-page">
       <section className="workbench-hero section-frame">
         <p className="eyebrow">[ 03 / WORKBENCH ]</p>
-        <h1>Work <em>&</em><br />Toolkit</h1>
-        <p>Everything I build with, grouped into one focused workspace.</p>
+        <h1>work_</h1>
+        <p>projects, tools, and things i've built, broken, rebuilt, and shipped.</p>
+      </section>
 
-        <div className="workbench-tabs" role="tablist" aria-label="Workbench sections">
-          <button className={activeSection === 'work' ? 'workbench-tab active' : 'workbench-tab'} onClick={() => selectSection('work')} role="tab" aria-selected={activeSection === 'work'}>
-            Work
-          </button>
-          <button className={activeSection === 'toolkit' ? 'workbench-tab active' : 'workbench-tab'} onClick={() => selectSection('toolkit')} role="tab" aria-selected={activeSection === 'toolkit'}>
-            Toolkit
-          </button>
+      <section className="section-frame toolkit-section workbench-section" id="workbench-toolkit">
+        <div className="section-heading">
+          <div>
+            <p className="eyebrow">[ 03A / TOOLKIT ]</p>
+            <h2>tools I<br /><em>trust.</em></h2>
+          </div>
+          <p className="section-intro">Languages, frameworks and engineering foundations I use to turn ideas into working systems.</p>
+        </div>
+
+        <div className="toolkit-marquee-shell">
+          <div className="toolkit-marquee-track">
+            {[...skills, ...skills].map((skill, index) => (
+              <div className="toolkit-pill" key={`${skill.name}-${index}`}>
+                <span className="toolkit-group">{skill.group}</span>
+                <strong>{skill.name}</strong>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
-      {activeSection === 'work' ? (
-        <section className="section-frame work-section workbench-section" id="workbench-work">
-          <div className="section-heading">
-            <div>
-              <p className="eyebrow">[ 03A / PROJECTS ]</p>
-              <h2>Things I’ve<br /><em>built.</em></h2>
-            </div>
-            <p className="section-intro">Projects that combine interface design, APIs, data and machine learning into things I can actually ship.</p>
+      <section className="section-frame work-section workbench-section" id="workbench-work">
+        <div className="section-heading">
+          <div>
+            <p className="eyebrow">[ 03B / BUILD LOG ]</p>
+            <h2>things i've<br /><em>built.</em></h2>
           </div>
+          <p className="section-intro">Projects that combine interface design, APIs, data and machine learning into things I can actually ship.</p>
+        </div>
 
-          <div className="project-stage">
-            <div className="project-index">
-              {projects.map((project, index) => (
-                <button key={project.title} className={index === activeProject ? 'project-tab active' : 'project-tab'} onClick={() => setActiveProject(index)} aria-pressed={index === activeProject}>
-                  <span>{project.number}</span>
-                  <strong>{project.title}</strong>
-                  <small>{project.category}</small>
-                </button>
-              ))}
-            </div>
-
-            <motion.article
-              key={projects[activeProject].title}
-              className={`project-feature accent-${projects[activeProject].accent}`}
-              initial={reducedMotion ? false : { opacity: 0, y: 24 }}
-              animate={reducedMotion ? undefined : { opacity: 1, y: 0 }}
-              transition={{ duration: 0.45 }}
-            >
-              <div className="project-visual" aria-hidden="true">
-                <span className="visual-label">LIVE CASE / {projects[activeProject].number}</span>
-                <div className="visual-core"><span /><span /><span /><span /></div>
-                <div className="visual-data data-a">REACT<br />API<br />DATA</div>
-                <div className="visual-data data-b">BUILD<br />→<br />SHIP</div>
-              </div>
-
-              <div className="project-copy">
-                <div className="project-topline">
-                  <span>{projects[activeProject].category}</span>
-                  <a href={projects[activeProject].href} target="_blank" rel="noopener noreferrer" aria-label={`Open ${projects[activeProject].title} on GitHub`}>
-                    <GitHubIcon size={19} />
-                    <ExternalLink size={16} />
-                  </a>
-                </div>
-
-                <h3>{projects[activeProject].title}</h3>
-                <p>{projects[activeProject].description}</p>
-
-                <div className="chip-row">
-                  {projects[activeProject].stack.map((item) => <span key={item}>{item}</span>)}
-                </div>
-
-                <a className="text-link" href={projects[activeProject].href} target="_blank" rel="noopener noreferrer">
-                  Explore repository <ArrowUpRight size={17} />
-                </a>
-              </div>
-            </motion.article>
-          </div>
-        </section>
-      ) : (
-        <section className="section-frame stack-section workbench-section" id="workbench-toolkit">
-          <div className="section-heading">
-            <div>
-              <p className="eyebrow">[ 03B / TOOLKIT ]</p>
-              <h2>Tools I<br /><em>trust.</em></h2>
-            </div>
-            <p className="section-intro">A focused map of the languages, frameworks and engineering foundations I use most.</p>
-          </div>
-
-          <div className="skill-map">
-            {skills.map((skill, index) => (
-              <motion.div key={skill.name} className="skill-card" initial={reducedMotion ? false : { opacity: 0, y: 22 }} whileInView={reducedMotion ? undefined : { opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.2 }} transition={{ delay: Math.min(index * 0.025, 0.3), duration: 0.45 }}>
-                <small>{skill.group}</small>
-                <strong>{skill.name}</strong>
-                <span>{String(index + 1).padStart(2, '0')}</span>
-              </motion.div>
+        <div className="project-stage">
+          <div className="project-index">
+            {projects.map((project, index) => (
+              <button
+                key={project.title}
+                className={index === activeProject ? 'project-tab active' : 'project-tab'}
+                onClick={() => setActiveProject(index)}
+                aria-pressed={index === activeProject}
+              >
+                <span>{project.number}</span>
+                <strong>{project.title}</strong>
+                <small>{project.category}</small>
+              </button>
             ))}
           </div>
-        </section>
-      )}
+
+          <motion.article
+            key={projects[activeProject].title}
+            className={`project-feature accent-${projects[activeProject].accent}`}
+            initial={reducedMotion ? false : { opacity: 0, y: 24 }}
+            animate={reducedMotion ? undefined : { opacity: 1, y: 0 }}
+            transition={{ duration: 0.45 }}
+          >
+            <div className="project-visual" aria-hidden="true">
+              <span className="visual-label">LIVE CASE / {projects[activeProject].number}</span>
+              <div className="visual-core"><span /><span /><span /><span /></div>
+              <div className="visual-data data-a">REACT<br />API<br />DATA</div>
+              <div className="visual-data data-b">BUILD<br />→<br />SHIP</div>
+            </div>
+
+            <div className="project-copy">
+              <div className="project-topline">
+                <span>{projects[activeProject].category}</span>
+                <a href={projects[activeProject].href} target="_blank" rel="noopener noreferrer" aria-label={`Open ${projects[activeProject].title} on GitHub`}>
+                  <GitHubIcon size={19} />
+                  <ExternalLink size={16} />
+                </a>
+              </div>
+              <h3>{projects[activeProject].title}</h3>
+              <p>{projects[activeProject].description}</p>
+              <div className="chip-row">
+                {projects[activeProject].stack.map((item) => <span key={item}>{item}</span>)}
+              </div>
+              <a className="text-link" href={projects[activeProject].href} target="_blank" rel="noopener noreferrer">
+                Explore repository <ArrowUpRight size={17} />
+              </a>
+            </div>
+          </motion.article>
+        </div>
+      </section>
+
+      <section className="workbench-reach section-frame">
+        <p className="eyebrow">[ 03C / REACH OUT ]</p>
+        <h2>have something<br /><em>worth building?</em></h2>
+        <a href="mailto:ganeshgowdam@gmail.com" className="reach-link">let's talk <ArrowUpRight size={22} /></a>
+      </section>
 
       <section className="workbench-foot section-frame">
-        <p>WORKBENCH / {activeSection.toUpperCase()} / END</p>
+        <p>WORKBENCH / END</p>
       </section>
     </main>
   );
 }
 
-function BottomDock({ page, onNavigate }: { page: 'home' | 'work' | 'toolkit'; onNavigate: (page: 'home' | 'work' | 'toolkit') => void }) {
+function BottomDock({ page, onNavigate }: { page: 'home' | 'work'; onNavigate: (page: 'home' | 'work') => void }) {
   return (
     <nav className="bottom-dock" aria-label="Persistent navigation">
       <button className={`dock-main ${page === 'home' ? 'active' : ''}`} onClick={() => onNavigate('home')}>
         <span className="dock-emoji">🧑🏻‍💻</span>
         <span>abt me</span>
       </button>
-
-      <button className={`dock-link ${page !== 'home' ? 'active' : ''}`} onClick={() => onNavigate('work')}>
+      <button className={`dock-link ${page === 'work' ? 'active' : ''}`} onClick={() => onNavigate('work')}>
         <span className="dock-arrow">↗</span>
         <span>work</span>
       </button>
-
       <div className="dock-divider" />
-
       <a className="dock-icon" href="https://github.com/ganesh-gowda" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><GitHubIcon /></a>
       <a className="dock-icon linkedin-icon" href="https://www.linkedin.com/in/ganesh-gowda-m/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><LinkedInIcon /></a>
       <a className="dock-icon" href="https://leetcode.com/" target="_blank" rel="noopener noreferrer" aria-label="LeetCode"><LeetCodeIcon /></a>
@@ -374,19 +330,16 @@ function BottomDock({ page, onNavigate }: { page: 'home' | 'work' | 'toolkit'; o
 }
 
 export default function App() {
-  const [page, setPage] = useState<'home' | 'work' | 'toolkit'>(() => {
+  const [page, setPage] = useState<'home' | 'work'>(() => {
     const path = window.location.pathname;
-    if (path.includes('/workbench/toolkit')) return 'toolkit';
-    if (path.includes('/workbench/work')) return 'work';
+    if (path.includes('/workbench/')) return 'work';
     return 'home';
   });
 
   useEffect(() => {
     const handlePopState = () => {
       const path = window.location.pathname;
-      if (path.includes('/workbench/toolkit')) setPage('toolkit');
-      else if (path.includes('/workbench/work')) setPage('work');
-      else setPage('home');
+      setPage(path.includes('/workbench/') ? 'work' : 'home');
       window.scrollTo(0, 0);
     };
 
@@ -394,8 +347,8 @@ export default function App() {
     return () => window.removeEventListener('popstate', handlePopState);
   }, []);
 
-  const navigate = (next: 'home' | 'work' | 'toolkit') => {
-    const path = next === 'home' ? '/' : `/workbench/${next}`;
+  const navigate = (next: 'home' | 'work') => {
+    const path = next === 'home' ? '/' : '/workbench/work';
     window.history.pushState(null, '', path);
     setPage(next);
     window.scrollTo({ top: 0, behavior: 'auto' });
@@ -403,7 +356,7 @@ export default function App() {
 
   return (
     <div className="site-shell">
-      {page === 'home' ? <LandingPage /> : <WorkbenchPage initialSection={page} />}
+      {page === 'home' ? <LandingPage /> : <WorkbenchPage />}
       <BottomDock page={page} onNavigate={navigate} />
     </div>
   );
