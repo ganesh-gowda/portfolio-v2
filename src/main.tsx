@@ -12,6 +12,7 @@ import './workbench.css';
 import './workbench-art.css';
 import './toolkit-icons.css';
 import './about-interactions';
+import './toolkit-icons';
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
