@@ -109,6 +109,18 @@ body,
   letter-spacing: -0.055em;
 }
 
+/* The About section ends after the main story. */
+.about-principles,
+.about-footer-line,
+.landing-end {
+  display: none !important;
+}
+
+#about.about-page-section {
+  min-height: auto !important;
+  padding-bottom: clamp(90px, 10vh, 140px) !important;
+}
+
 @media (max-width: 760px) {
   .landing-title {
     letter-spacing: -0.03em;
