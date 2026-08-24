@@ -48,16 +48,12 @@ export const projects: Project[] = [
 ];
 
 export const skills = [
-  { name: 'Java', group: 'Core' },
-  { name: 'React', group: 'Frontend' },
   { name: 'JavaScript', group: 'Frontend' },
+  { name: 'React', group: 'Frontend' },
   { name: 'Tailwind CSS', group: 'Frontend' },
-  { name: 'Node.js', group: 'Backend' },
-  { name: 'Express', group: 'Backend' },
-  { name: 'REST APIs', group: 'Backend' },
-  { name: 'MongoDB', group: 'Data' },
-  { name: 'SQL', group: 'Data' },
   { name: 'Python', group: 'AI / ML' },
-  { name: 'Machine Learning', group: 'AI / ML' },
-  { name: 'Git', group: 'Tools' },
+  { name: 'GitHub', group: 'Tools' },
+  { name: 'Figma', group: 'Design' },
+  { name: 'TypeScript', group: 'Frontend' },
+  { name: 'Vite', group: 'Frontend' },
 ];
