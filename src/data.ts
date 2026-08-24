@@ -49,8 +49,6 @@ export const projects: Project[] = [
 
 export const skills = [
   { name: 'Java', group: 'Core' },
-  { name: 'Data Structures', group: 'Core' },
-  { name: 'Algorithms', group: 'Core' },
   { name: 'React', group: 'Frontend' },
   { name: 'JavaScript', group: 'Frontend' },
   { name: 'Tailwind CSS', group: 'Frontend' },
