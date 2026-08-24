@@ -1,0 +1,35 @@
+.bottom-dock {
+  width: max-content !important;
+  max-width: calc(100vw - 18px) !important;
+  min-width: 0 !important;
+  padding: 5px 6px !important;
+  gap: 3px !important;
+  box-sizing: border-box !important;
+}
+
+.bottom-dock > :last-child {
+  margin-right: 0 !important;
+}
+
+.dock-icon {
+  flex: 0 0 40px;
+}
+
+/* The dock intentionally contains no X/Twitter item. */
+.bottom-dock .x-icon,
+.bottom-dock .twitter-icon {
+  display: none !important;
+}
+
+@media (max-width: 760px) {
+  .bottom-dock {
+    width: max-content !important;
+    max-width: calc(100vw - 18px) !important;
+    padding: 4px 5px !important;
+    gap: 1px !important;
+  }
+
+  .dock-icon {
+    flex: 0 0 34px;
+  }
+}
