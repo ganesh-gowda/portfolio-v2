@@ -6,30 +6,32 @@ function enhanceAbout(): void {
 
   section.dataset.aboutEnhanced = 'true';
 
-  // Keep the original About Me prose intact; only add the visual interaction layer.
+  // Keep the subtle orbital detail around the portrait.
   const orbit = document.createElement('div');
   orbit.className = 'photo-orbit';
   orbit.setAttribute('aria-hidden', 'true');
   orbit.innerHTML = '<span class="orbit-dot orbit-dot-a"></span><span class="orbit-dot orbit-dot-b"></span><span class="orbit-dot orbit-dot-c"></span>';
   photo.appendChild(orbit);
 
-  section.addEventListener('pointermove', (event) => {
+  // Keep the ambient blue glow and photo depth responsive to the pointer.
+  const onPointerMove = (event: PointerEvent) => {
     const rect = section.getBoundingClientRect();
     const x = ((event.clientX - rect.left) / rect.width) * 100;
     const y = ((event.clientY - rect.top) / rect.height) * 100;
 
     section.style.setProperty('--mouse-x', `${x}%`);
     section.style.setProperty('--mouse-y', `${y}%`);
-    section.style.setProperty('--mouse-tilt', `${(x - 50) * 0.04}deg`);
     photo.style.setProperty('--photo-tilt', `${(x - 50) * 0.035}deg`);
-  });
+  };
 
-  section.addEventListener('pointerleave', () => {
+  const resetPointer = () => {
     section.style.setProperty('--mouse-x', '50%');
     section.style.setProperty('--mouse-y', '44%');
-    section.style.setProperty('--mouse-tilt', '0deg');
     photo.style.setProperty('--photo-tilt', '0deg');
-  });
+  };
+
+  section.addEventListener('pointermove', onPointerMove);
+  section.addEventListener('pointerleave', resetPointer);
 }
 
 function bootAboutInteractions(): void {
