@@ -1,0 +1,32 @@
+.landing-hero {
+  isolation: isolate;
+}
+
+/* Explicit positive stacking keeps the remote background visible. */
+.landing-photo {
+  z-index: 0 !important;
+}
+
+.landing-vignette {
+  z-index: 1 !important;
+}
+
+.landing-scanlines {
+  z-index: 2 !important;
+}
+
+.landing-grain {
+  z-index: 3 !important;
+}
+
+.landing-words {
+  z-index: 4 !important;
+}
+
+.landing-copy {
+  z-index: 5 !important;
+}
+
+.landing-scroll-cue {
+  z-index: 6 !important;
+}
