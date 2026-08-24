@@ -9,6 +9,7 @@ import './dock.css';
 import './about-effects.css';
 import './landing-fix.css';
 import './workbench.css';
+import './workbench-art.css';
 import './about-interactions';
 
 createRoot(document.getElementById('root')!).render(
