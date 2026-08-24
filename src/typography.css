@@ -121,14 +121,37 @@ body,
   padding-bottom: clamp(90px, 10vh, 140px) !important;
 }
 
+/* Use the compact "about_" label for the pixel heading. */
+.about-pixel-heading {
+  font-size: 0 !important;
+}
+
+.about-pixel-heading::after {
+  content: 'about_';
+  display: block;
+  font-family: 'Silkscreen', monospace;
+  font-size: clamp(54px, 10vw, 132px);
+  line-height: .9;
+  font-weight: 700;
+  letter-spacing: -0.055em;
+  transform: scaleX(.9);
+  transform-origin: left center;
+  color: #f4f1eb;
+  text-shadow:
+    2px 0 rgba(255,255,255,.18),
+    -2px 0 rgba(217,255,96,.12),
+    0 0 34px rgba(255,255,255,.06);
+}
+
 @media (max-width: 760px) {
   .landing-title {
     letter-spacing: -0.03em;
     transform: scaleX(.96);
   }
 
-  .about-pixel-heading {
-    transform: scaleX(.94);
+  .about-pixel-heading::after {
+    font-size: clamp(42px, 15vw, 74px);
     letter-spacing: -0.04em;
+    transform: scaleX(.94);
   }
 }
