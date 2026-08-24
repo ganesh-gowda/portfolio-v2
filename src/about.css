@@ -3,6 +3,11 @@
   min-height: 100svh;
   padding: clamp(110px, 14vh, 190px) 0 190px;
   overflow: hidden;
+  background:
+    radial-gradient(circle at 22% 28%, rgba(34, 85, 210, .18), transparent 34%),
+    radial-gradient(circle at 78% 62%, rgba(0, 148, 255, .12), transparent 38%),
+    radial-gradient(circle at 52% 48%, rgba(76, 112, 255, .055), transparent 52%),
+    #050609;
 }
 
 #about.about-page-section::before {
