@@ -17,50 +17,34 @@
 }
 
 .toolkit-marquee-track > .toolkit-pill:nth-child(1)::before,
-.toolkit-marquee-track > .toolkit-pill:nth-child(13)::before {
-  background-image: url('https://cdn.simpleicons.org/openjdk/9ecaff') !important;
+.toolkit-marquee-track > .toolkit-pill:nth-child(9)::before {
+  background-image: url('https://cdn.simpleicons.org/javascript/9ecaff') !important;
 }
 .toolkit-marquee-track > .toolkit-pill:nth-child(2)::before,
-.toolkit-marquee-track > .toolkit-pill:nth-child(14)::before {
+.toolkit-marquee-track > .toolkit-pill:nth-child(10)::before {
   background-image: url('https://cdn.simpleicons.org/react/9ecaff') !important;
 }
 .toolkit-marquee-track > .toolkit-pill:nth-child(3)::before,
-.toolkit-marquee-track > .toolkit-pill:nth-child(15)::before {
-  background-image: url('https://cdn.simpleicons.org/javascript/9ecaff') !important;
-}
-.toolkit-marquee-track > .toolkit-pill:nth-child(4)::before,
-.toolkit-marquee-track > .toolkit-pill:nth-child(16)::before {
+.toolkit-marquee-track > .toolkit-pill:nth-child(11)::before {
   background-image: url('https://cdn.simpleicons.org/tailwindcss/9ecaff') !important;
 }
-.toolkit-marquee-track > .toolkit-pill:nth-child(5)::before,
-.toolkit-marquee-track > .toolkit-pill:nth-child(17)::before {
-  background-image: url('https://cdn.simpleicons.org/nodedotjs/9ecaff') !important;
-}
-.toolkit-marquee-track > .toolkit-pill:nth-child(6)::before,
-.toolkit-marquee-track > .toolkit-pill:nth-child(18)::before {
-  background-image: url('https://cdn.simpleicons.org/express/9ecaff') !important;
-}
-.toolkit-marquee-track > .toolkit-pill:nth-child(7)::before,
-.toolkit-marquee-track > .toolkit-pill:nth-child(19)::before {
-  background-image: url('https://cdn.simpleicons.org/swagger/9ecaff') !important;
-}
-.toolkit-marquee-track > .toolkit-pill:nth-child(8)::before,
-.toolkit-marquee-track > .toolkit-pill:nth-child(20)::before {
-  background-image: url('https://cdn.simpleicons.org/mongodb/9ecaff') !important;
-}
-.toolkit-marquee-track > .toolkit-pill:nth-child(9)::before,
-.toolkit-marquee-track > .toolkit-pill:nth-child(21)::before {
-  background-image: url('https://cdn.simpleicons.org/sqlite/9ecaff') !important;
-}
-.toolkit-marquee-track > .toolkit-pill:nth-child(10)::before,
-.toolkit-marquee-track > .toolkit-pill:nth-child(22)::before {
+.toolkit-marquee-track > .toolkit-pill:nth-child(4)::before,
+.toolkit-marquee-track > .toolkit-pill:nth-child(12)::before {
   background-image: url('https://cdn.simpleicons.org/python/9ecaff') !important;
 }
-.toolkit-marquee-track > .toolkit-pill:nth-child(11)::before,
-.toolkit-marquee-track > .toolkit-pill:nth-child(23)::before {
-  background-image: url('https://cdn.simpleicons.org/scikitlearn/9ecaff') !important;
+.toolkit-marquee-track > .toolkit-pill:nth-child(5)::before,
+.toolkit-marquee-track > .toolkit-pill:nth-child(13)::before {
+  background-image: url('https://cdn.simpleicons.org/github/9ecaff') !important;
 }
-.toolkit-marquee-track > .toolkit-pill:nth-child(12)::before,
-.toolkit-marquee-track > .toolkit-pill:nth-child(24)::before {
-  background-image: url('https://cdn.simpleicons.org/git/9ecaff') !important;
+.toolkit-marquee-track > .toolkit-pill:nth-child(6)::before,
+.toolkit-marquee-track > .toolkit-pill:nth-child(14)::before {
+  background-image: url('https://cdn.simpleicons.org/figma/9ecaff') !important;
+}
+.toolkit-marquee-track > .toolkit-pill:nth-child(7)::before,
+.toolkit-marquee-track > .toolkit-pill:nth-child(15)::before {
+  background-image: url('https://cdn.simpleicons.org/typescript/9ecaff') !important;
+}
+.toolkit-marquee-track > .toolkit-pill:nth-child(8)::before,
+.toolkit-marquee-track > .toolkit-pill:nth-child(16)::before {
+  background-image: url('https://cdn.simpleicons.org/vite/9ecaff') !important;
 }
