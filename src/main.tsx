@@ -7,6 +7,7 @@ import './about.css';
 import './typography.css';
 import './dock.css';
 import './about-effects.css';
+import './landing-fix.css';
 import './about-interactions';
 
 createRoot(document.getElementById('root')!).render(
