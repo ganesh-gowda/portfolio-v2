@@ -5,6 +5,7 @@ import './styles.css';
 import './landing.css';
 import './about.css';
 import './typography.css';
+import './dock.css';
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
