@@ -1,0 +1,9 @@
+/* Tighten the dead space beneath the Workbench content. */
+.workbench-page {
+  padding-bottom: 64px !important;
+}
+
+.workbench-foot {
+  padding-top: 28px !important;
+  padding-bottom: 18px !important;
+}
