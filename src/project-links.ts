@@ -1,7 +1,7 @@
 const liveDemos: Record<string, string> = {
-  KrishiAI: '',
-  'Crypto X': '',
-  MediConnect: '',
+  KrishiAI: 'https://krishi-ai-three.vercel.app/',
+  'Crypto X': 'https://cryptox-coral.vercel.app/',
+  MediConnect: 'https://doctor-appointment-weld-delta.vercel.app/',
 };
 
 const githubRepos: Record<string, string> = {
