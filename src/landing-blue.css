@@ -1,0 +1,85 @@
+/* Blue visual language trial for Landing + About. */
+.landing-page {
+  --landing-bg: #03070e;
+  --landing-blue: #1769ff;
+  --landing-cyan: #5edcff;
+  --landing-white: #f5f7fa;
+  --landing-muted: #c9d4e3;
+  background: var(--landing-bg) !important;
+  color: var(--landing-white);
+}
+
+.landing-page .landing-hero {
+  background:
+    radial-gradient(circle at 50% 48%, rgba(0,126,255,.16), transparent 36%),
+    linear-gradient(145deg, #02050b, #06162c 58%, #02050b) !important;
+}
+
+.landing-page .landing-vignette {
+  background:
+    radial-gradient(circle at 50% 45%, transparent 8%, rgba(0,9,25,.12) 44%, rgba(0,4,12,.78) 100%),
+    linear-gradient(180deg, rgba(0,7,18,.22), transparent 28%, transparent 72%, rgba(0,4,12,.8));
+}
+
+.landing-page .landing-name,
+.landing-page .landing-title,
+.landing-page .landing-word,
+.landing-page .landing-copy {
+  color: var(--landing-white);
+}
+
+.landing-page .landing-title {
+  text-shadow: 0 2px 2px rgba(0,0,0,.9), 0 0 34px rgba(0,134,255,.16);
+}
+
+.landing-page .landing-subtitle,
+.landing-page .about-intro-line,
+.landing-page .about-copy-large > p,
+.landing-page .story-lead,
+.landing-page .about-story p {
+  color: var(--landing-muted);
+}
+
+.landing-page .landing-scroll-cue,
+.landing-page .landing-scroll-line {
+  color: rgba(245,247,250,.8);
+}
+
+.landing-page .about-page-section {
+  background:
+    radial-gradient(circle at 18% 25%, rgba(0,113,255,.11), transparent 28%),
+    radial-gradient(circle at 82% 75%, rgba(94,220,255,.08), transparent 30%),
+    var(--landing-bg);
+}
+
+.landing-page .about-photo-panel,
+.landing-page .about-story,
+.landing-page .about-photo-frame {
+  border-color: rgba(126,182,255,.16);
+}
+
+.landing-page .about-photo-frame,
+.landing-page .about-story {
+  background:
+    linear-gradient(145deg, rgba(255,255,255,.045), rgba(255,255,255,.012)),
+    rgba(4,10,19,.72);
+  box-shadow: 0 28px 80px rgba(0,0,0,.28), 0 0 55px rgba(0,103,255,.06), inset 0 1px rgba(255,255,255,.06);
+}
+
+.landing-page .about-principles > div,
+.landing-page .about-footer-line,
+.landing-page .about-stats > div {
+  border-color: rgba(126,182,255,.16);
+}
+
+.landing-page .about-principles strong,
+.landing-page .about-footer-line span:last-child,
+.landing-page .label-c {
+  color: var(--landing-cyan);
+}
+
+.landing-page .about-visual,
+.landing-page .about-visual-grid,
+.landing-page .portrait-frame {
+  border-color: rgba(126,182,255,.18);
+}
