@@ -100,17 +100,7 @@
   transition: transform .28s ease, border-color .28s ease, background .28s ease, box-shadow .28s ease;
 }
 
-.contact-action-card::before {
-  content: '';
-  position: absolute;
-  width: 84px;
-  height: 84px;
-  top: 16px;
-  right: 16px;
-  border: 1px solid rgba(94,220,255,.12);
-  border-radius: 50%;
-  pointer-events: none;
-}
+.contact-action-card::before { display: none !important; }
 
 .contact-action-kicker,
 .contact-action-meta {
