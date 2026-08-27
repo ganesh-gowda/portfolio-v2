@@ -68,6 +68,19 @@
   overflow: hidden;
 }
 
+.about-intro::before {
+  content: 'MYS / BLR';
+  position: absolute;
+  top: clamp(24px, 3.2vw, 40px);
+  right: clamp(24px, 3.8vw, 52px);
+  color: rgba(110,215,255,.62);
+  font: 500 10px/1 'DM Mono', monospace;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  padding-left: 18px;
+  border-left: 1px solid rgba(110,215,255,.22);
+}
+
 .about-intro::after {
   content: '';
   position: absolute;
@@ -363,7 +376,13 @@
   }
 
   .about-intro {
-    padding: 28px 22px 32px;
+    padding: 62px 22px 32px;
+  }
+
+  .about-intro::before {
+    top: 24px;
+    right: 22px;
+    font-size: 8px;
   }
 
   .about-pixel-heading {
