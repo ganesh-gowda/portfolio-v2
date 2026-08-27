@@ -1,0 +1,139 @@
+/* Experimental Workbench atmosphere — landing/About remain untouched. */
+.workbench-page {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  background: #040507;
+}
+
+.workbench-page::before,
+.workbench-page::after {
+  content: '';
+  position: fixed;
+  inset: -25vmax;
+  pointer-events: none;
+  z-index: -2;
+  opacity: .72;
+  filter: blur(85px) saturate(135%);
+  transform: translate3d(0,0,0);
+}
+
+.workbench-page::before {
+  background:
+    radial-gradient(ellipse at 18% 26%, rgba(126,72,255,.38) 0 10%, transparent 34%),
+    radial-gradient(ellipse at 78% 28%, rgba(0,212,255,.24) 0 8%, transparent 30%),
+    radial-gradient(ellipse at 52% 74%, rgba(255,51,173,.22) 0 7%, transparent 28%);
+  animation: workbenchIridescentA 18s ease-in-out infinite alternate;
+}
+
+.workbench-page::after {
+  background:
+    radial-gradient(ellipse at 72% 68%, rgba(73,70,255,.28) 0 8%, transparent 31%),
+    radial-gradient(ellipse at 30% 76%, rgba(0,194,255,.18) 0 7%, transparent 28%);
+  mix-blend-mode: screen;
+  animation: workbenchIridescentB 24s ease-in-out infinite alternate;
+}
+
+@keyframes workbenchIridescentA {
+  0% { transform: translate3d(-4vw,-2vh,0) rotate(-2deg) scale(1); }
+  50% { transform: translate3d(3vw,2vh,0) rotate(3deg) scale(1.05); }
+  100% { transform: translate3d(7vw,-3vh,0) rotate(-1deg) scale(1.08); }
+}
+
+@keyframes workbenchIridescentB {
+  0% { transform: translate3d(4vw,3vh,0) rotate(2deg) scale(1.02); }
+  50% { transform: translate3d(-4vw,-2vh,0) rotate(-3deg) scale(1.08); }
+  100% { transform: translate3d(-7vw,4vh,0) rotate(1deg) scale(1.12); }
+}
+
+.workbench-page .section-frame {
+  position: relative;
+}
+
+.workbench-page .section-frame::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: .11;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 160 160' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.78' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.28'/%3E%3C/svg%3E");
+  mix-blend-mode: soft-light;
+}
+
+.workbench-hero,
+.toolkit-section,
+.project-feature,
+.workbench-reach {
+  box-shadow:
+    0 30px 110px rgba(0,0,0,.34),
+    0 0 80px rgba(100,78,255,.055),
+    inset 0 1px rgba(255,255,255,.07);
+}
+
+.workbench-hero::before {
+  background: linear-gradient(120deg, transparent 23%, rgba(255,255,255,.09) 47%, transparent 61%);
+  animation: workbenchBeam 11s ease-in-out infinite;
+}
+
+@keyframes workbenchBeam {
+  0%, 58% { transform: translateX(-105%) rotate(18deg); opacity: 0; }
+  64% { opacity: .9; }
+  79%, 100% { transform: translateX(105%) rotate(18deg); opacity: 0; }
+}
+
+.toolkit-section {
+  background:
+    radial-gradient(circle at 12% 20%, rgba(126,72,255,.13), transparent 30%),
+    radial-gradient(circle at 83% 82%, rgba(0,212,255,.09), transparent 28%),
+    linear-gradient(145deg, rgba(255,255,255,.055), rgba(255,255,255,.012)),
+    rgba(6,8,13,.72);
+}
+
+.toolkit-marquee-shell {
+  background: rgba(2,4,8,.58);
+  box-shadow: inset 0 0 40px rgba(79,67,255,.035), inset 0 1px rgba(255,255,255,.05);
+}
+
+.toolkit-pill {
+  background:
+    linear-gradient(140deg, rgba(255,255,255,.08), rgba(255,255,255,.02)),
+    rgba(9,12,20,.92);
+  box-shadow:
+    inset 0 1px rgba(255,255,255,.07),
+    0 14px 32px rgba(0,0,0,.2),
+    0 0 24px rgba(107,88,255,.025);
+}
+
+.project-feature {
+  position: relative;
+  overflow: hidden;
+}
+
+.project-feature::before {
+  content: '';
+  position: absolute;
+  inset: -40% -20%;
+  background: conic-gradient(from 210deg, transparent 0 26%, rgba(91,79,255,.09) 34%, transparent 43% 57%, rgba(0,211,255,.07) 64%, transparent 72% 100%);
+  filter: blur(34px);
+  animation: projectOrbit 17s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes projectOrbit {
+  to { transform: rotate(360deg); }
+}
+
+.workbench-reach {
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 65% 45%, rgba(126,72,255,.16), transparent 32%),
+    radial-gradient(circle at 35% 55%, rgba(0,212,255,.10), transparent 30%),
+    rgba(5,7,11,.72);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .workbench-page::before,
+  .workbench-page::after,
+  .workbench-hero::before,
+  .project-feature::before { animation: none; }
+}
