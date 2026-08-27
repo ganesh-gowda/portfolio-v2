@@ -8,7 +8,7 @@ function renderContact(section: HTMLElement): void {
       <p class="contact-intro">Got a project, opportunity, or just want to say hello? Reach out and let's build something interesting.</p>
     </div>
     <div class="contact-actions-row" aria-label="Contact options">
-      <a class="contact-action-card" href="mailto:ganeshgowdam6@gmail.com?subject=Hiring%20Ganesh%20Gowda">
+      <a class="contact-action-card" href="https://mail.google.com/mail/?view=cm&fs=1&to=ganeshgowdam6%40gmail.com&su=Hiring%20Ganesh%20Gowda" target="_blank" rel="noopener noreferrer">
         <span class="contact-action-kicker">01 / DIRECT</span>
         <strong>EMAIL ME</strong>
         <span class="contact-action-meta">ganeshgowdam6@gmail.com ↗</span>
