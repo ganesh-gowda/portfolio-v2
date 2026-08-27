@@ -1,66 +1,31 @@
-function findElementByText(root: Element, needle: string): HTMLElement | null {
-  const target = needle.toLowerCase();
-  const matches = Array.from(root.querySelectorAll<HTMLElement>('a, button, h1, h2, h3, h4, p, span'));
-  return matches.find((element) => element.textContent?.trim().toLowerCase().includes(target)) ?? null;
-}
-
-function cardFor(element: HTMLElement, section: HTMLElement): HTMLElement | null {
-  let node: HTMLElement | null = element.parentElement;
-
-  while (node && node !== section) {
-    const className = typeof node.className === 'string' ? node.className : '';
-    if (node.tagName === 'ARTICLE' || /card|channel|contact/i.test(className)) return node;
-    node = node.parentElement;
-  }
-
-  node = element.parentElement;
-  while (node && node.parentElement !== section) node = node.parentElement;
-  return node;
-}
-
-function simplifyContact(): boolean {
-  const section = document.querySelector<HTMLElement>('.workbench-reach');
-  if (!section) return false;
-
-  const email = findElementByText(section, 'email me');
-  const book = findElementByText(section, 'book a call');
-  const dm = findElementByText(section, 'dm on x');
-  if (!email && !book && !dm) return false;
-
-  section.dataset.simplified = 'true';
+function renderContact(section: HTMLElement): void {
   section.classList.add('contact-simplified');
-
-  const primary = email ? cardFor(email, section) : null;
-  const unwanted = [book, dm]
-    .filter((element): element is HTMLElement => Boolean(element))
-    .map((element) => cardFor(element, section))
-    .filter((card): card is HTMLElement => Boolean(card));
-
-  primary?.classList.add('contact-primary-card');
-  unwanted.forEach((card) => card.classList.add('contact-remove-card'));
-
-  if (primary) {
-    const actions = Array.from(primary.querySelectorAll<HTMLElement>('a, button'));
-    actions.forEach((action) => {
-      const text = action.textContent?.trim().toLowerCase() ?? '';
-      const aria = action.getAttribute('aria-label')?.toLowerCase() ?? '';
-      const keep = /email|resume/.test(`${text} ${aria}`);
-      if (!keep) action.classList.add('contact-remove-action');
-    });
-  }
-
-  return true;
+  section.dataset.simplified = 'true';
+  section.innerHTML = `
+    <div class="contact-header">
+      <p class="eyebrow">[ 03C / REACH OUT ]</p>
+      <h2>have something<br /><em>worth building?</em></h2>
+      <p class="contact-intro">Got a project, opportunity, or just want to say hello? Reach out and let's build something interesting.</p>
+    </div>
+    <div class="contact-actions-row" aria-label="Contact options">
+      <a class="contact-action-card" href="mailto:ganeshgowdam@gmail.com">
+        <span class="contact-action-kicker">01 / DIRECT</span>
+        <strong>EMAIL ME</strong>
+        <span class="contact-action-meta">ganeshgowdam@gmail.com ↗</span>
+      </a>
+      <a class="contact-action-card" href="/resume.pdf" target="_blank" rel="noopener noreferrer">
+        <span class="contact-action-kicker">02 / PROFILE</span>
+        <strong>GET RESUME</strong>
+        <span class="contact-action-meta">view / download ↗</span>
+      </a>
+    </div>
+  `;
 }
-
-let observer: MutationObserver | null = null;
 
 export function initContactSimplify(): void {
-  simplifyContact();
-  if (observer) observer.disconnect();
-  observer = new MutationObserver(() => {
-    if (simplifyContact()) observer?.disconnect();
-  });
-  observer.observe(document.body, { childList: true, subtree: true });
+  const section = document.querySelector<HTMLElement>('.workbench-reach');
+  if (!section || section.dataset.simplified === 'true') return;
+  renderContact(section);
 }
 
 if (document.readyState === 'loading') {
