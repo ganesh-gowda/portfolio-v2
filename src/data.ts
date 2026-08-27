@@ -34,7 +34,7 @@ export const projects: Project[] = [
     title: 'MediConnect',
     number: '03',
     category: 'Healthcare / Full Stack',
-    description: 'A full-stack telemedicine platform with JWT-secured authentication and role-based access control, 20+ RESTful API endpoints, Razorpay payments, Agora video consultations, digital prescriptions, and an AI-powered symptom checker covering 57 disease classifications. Automated email reminders via node-cron help reduce appointment no-shows.',
+    description: 'A full-stack telemedicine platform with JWT authentication, role-based access, 20+ REST APIs, Razorpay payments, Agora video consultations, digital prescriptions, a 57-disease AI symptom checker, and automated appointment reminders.',
     stack: ['React JS', 'Node.js', 'Express.js', 'MongoDB', 'Razorpay', 'Agora SDK', 'Cloudinary', 'Nodemailer', 'Python'],
     href: '',
     live: '',
