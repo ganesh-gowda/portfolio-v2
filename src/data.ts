@@ -4,7 +4,8 @@ export type Project = {
   category: string;
   description: string;
   stack: string[];
-  href: string;
+  href?: string;
+  live?: string;
   accent: string;
 };
 
@@ -16,7 +17,8 @@ export const projects: Project[] = [
     description: 'An intelligent agriculture platform that turns crop and soil inputs into practical recommendations through a modern web interface.',
     stack: ['React', 'FastAPI', 'Python', 'ML', 'Tailwind'],
     href: 'https://github.com/ganesh-gowda/KrishiAI',
-    accent: 'lime',
+    live: '',
+    accent: 'cyan',
   },
   {
     title: 'Crypto X',
@@ -25,24 +27,17 @@ export const projects: Project[] = [
     description: 'A cryptocurrency command center for exploring market data, trends, and assets through a fast, responsive dashboard experience.',
     stack: ['React', 'Node.js', 'MongoDB', 'REST', 'API'],
     href: 'https://github.com/ganesh-gowda/Crypto-X',
+    live: '',
     accent: 'cyan',
   },
   {
-    title: 'Medicine Recommendation',
-    number: '03',
-    category: 'Machine Learning',
-    description: 'A recommendation application that connects symptom input to an ML-backed prediction workflow and user-friendly results.',
-    stack: ['Python', 'ML', 'Flask', 'HTML', 'CSS'],
-    href: 'https://github.com/ganesh-gowda/Medicine-Prediction',
-    accent: 'pink',
-  },
-  {
     title: 'MediConnect',
-    number: '04',
+    number: '03',
     category: 'Healthcare / Full Stack',
     description: 'A full-stack telemedicine platform with JWT-secured authentication and role-based access control, 20+ RESTful API endpoints, Razorpay payments, Agora video consultations, digital prescriptions, and an AI-powered symptom checker covering 57 disease classifications. Automated email reminders via node-cron help reduce appointment no-shows.',
     stack: ['React JS', 'Node.js', 'Express.js', 'MongoDB', 'Razorpay', 'Agora SDK', 'Cloudinary', 'Nodemailer', 'Python'],
-    href: 'https://github.com/dheerajsn2004/Doctor-Appointment',
+    href: '',
+    live: '',
     accent: 'cyan',
   },
 ];
