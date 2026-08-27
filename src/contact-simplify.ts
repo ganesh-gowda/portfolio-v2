@@ -13,10 +13,10 @@ function renderContact(section: HTMLElement): void {
         <strong>EMAIL ME</strong>
         <span class="contact-action-meta">ganeshgowdam@gmail.com ↗</span>
       </a>
-      <a class="contact-action-card" href="/resume.pdf" target="_blank" rel="noopener noreferrer">
+      <a class="contact-action-card" href="/resume.html" target="_blank" rel="noopener noreferrer">
         <span class="contact-action-kicker">02 / PROFILE</span>
         <strong>GET RESUME</strong>
-        <span class="contact-action-meta">view / download ↗</span>
+        <span class="contact-action-meta">view / print ↗</span>
       </a>
     </div>
   `;
