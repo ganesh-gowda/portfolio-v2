@@ -37,13 +37,13 @@ export const projects: Project[] = [
     accent: 'pink',
   },
   {
-    title: 'Summeriz',
+    title: 'MediConnect',
     number: '04',
-    category: 'AI Product',
-    description: 'A focused summarization experience designed to turn dense source material into useful, readable outputs.',
-    stack: ['React', 'AI', 'JavaScript', 'API'],
-    href: 'https://github.com/ganesh-gowda/Summeriz',
-    accent: 'violet',
+    category: 'Healthcare / Full Stack',
+    description: 'A full-stack telemedicine platform with JWT-secured authentication and role-based access control, 20+ RESTful API endpoints, Razorpay payments, Agora video consultations, digital prescriptions, and an AI-powered symptom checker covering 57 disease classifications. Automated email reminders via node-cron help reduce appointment no-shows.',
+    stack: ['React JS', 'Node.js', 'Express.js', 'MongoDB', 'Razorpay', 'Agora SDK', 'Cloudinary', 'Nodemailer', 'Python'],
+    href: 'https://github.com/dheerajsn2004/Doctor-Appointment',
+    accent: 'cyan',
   },
 ];
 
