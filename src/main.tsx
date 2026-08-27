@@ -14,6 +14,7 @@ import './toolkit-icons.css';
 import './workbench-iridescent.css';
 import './workbench-cinematic.css';
 import './landing-blue.css';
+import './workbench-3d.css';
 import './about-interactions';
 import './toolkit-icons';
 
