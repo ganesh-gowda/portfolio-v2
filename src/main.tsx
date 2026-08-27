@@ -19,10 +19,12 @@ import './project-links.css';
 import './contact-simplify.css';
 import './contact-card-fix.css';
 import './workbench-spacing-fix.css';
+import './workbench-mouse.css';
 import './about-interactions';
 import './toolkit-icons';
 import './project-links';
 import './contact-simplify';
+import './workbench-mouse';
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
