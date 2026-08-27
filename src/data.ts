@@ -17,7 +17,7 @@ export const projects: Project[] = [
     description: 'An intelligent agriculture platform that turns crop and soil inputs into practical recommendations through a modern web interface.',
     stack: ['React', 'FastAPI', 'Python', 'ML', 'Tailwind'],
     href: 'https://github.com/ganesh-gowda/KrishiAI',
-    live: '',
+    live: 'https://krishi-ai-three.vercel.app/',
     accent: 'cyan',
   },
   {
@@ -27,7 +27,7 @@ export const projects: Project[] = [
     description: 'A cryptocurrency command center for exploring market data, trends, and assets through a fast, responsive dashboard experience.',
     stack: ['React', 'Node.js', 'MongoDB', 'REST', 'API'],
     href: 'https://github.com/ganesh-gowda/Crypto-X',
-    live: '',
+    live: 'https://cryptox-coral.vercel.app/',
     accent: 'cyan',
   },
   {
@@ -37,7 +37,7 @@ export const projects: Project[] = [
     description: 'A full-stack telemedicine platform with JWT authentication, role-based access, 20+ REST APIs, Razorpay payments, Agora video consultations, digital prescriptions, a 57-disease AI symptom checker, and automated appointment reminders.',
     stack: ['React JS', 'Node.js', 'Express.js', 'MongoDB', 'Razorpay', 'Agora SDK', 'Cloudinary', 'Nodemailer', 'Python'],
     href: '',
-    live: '',
+    live: 'https://doctor-appointment-weld-delta.vercel.app/',
     accent: 'cyan',
   },
 ];
