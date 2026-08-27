@@ -1,0 +1,50 @@
+.workbench-page {
+  --mouse-x: 50%;
+  --mouse-y: 42%;
+  --mouse-glow-x: 50%;
+  --mouse-glow-y: 42%;
+  position: relative;
+  isolation: isolate;
+  background:
+    radial-gradient(circle at var(--mouse-x) var(--mouse-y), rgba(0, 196, 255, .16), transparent 22%),
+    radial-gradient(circle at calc(var(--mouse-x) + 12%) calc(var(--mouse-y) + 18%), rgba(39, 105, 255, .12), transparent 34%),
+    radial-gradient(circle at 14% 82%, rgba(0, 120, 255, .07), transparent 28%),
+    #020814;
+  transition: background 160ms ease-out;
+}
+
+.workbench-page::before {
+  content: '';
+  position: fixed;
+  inset: -18%;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at var(--mouse-x) var(--mouse-y), rgba(94, 220, 255, .10), transparent 16%),
+    radial-gradient(circle at calc(var(--mouse-x) - 14%) calc(var(--mouse-y) + 10%), rgba(23, 105, 255, .09), transparent 24%);
+  filter: blur(44px);
+  opacity: .95;
+  transition: background-position 180ms ease-out;
+  transform: translateZ(0);
+}
+
+/* Match the blue/cool-white visual language of the landing and About pages. */
+.workbench-page .eyebrow,
+.workbench-page .section-intro,
+.workbench-page .workbench-hero > p:last-of-type,
+.workbench-page .project-copy p {
+  color: rgba(201, 216, 235, .68);
+}
+
+.workbench-page .project-tab span,
+.workbench-page .toolkit-group {
+  color: rgba(158, 202, 255, .72);
+}
+
+.workbench-page .project-tab:hover strong,
+.workbench-page .project-tab.active strong,
+.workbench-page .text-link,
+.workbench-page .toolkit-section .section-heading h2 em,
+.workbench-page .work-section .section-heading h2 em {
+  color: #6ed7ff;
+}
