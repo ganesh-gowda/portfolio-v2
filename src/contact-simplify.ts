@@ -18,16 +18,17 @@ function cardFor(element: HTMLElement, section: HTMLElement): HTMLElement | null
   return node;
 }
 
-function simplifyContact(): void {
+function simplifyContact(): boolean {
   const section = document.querySelector<HTMLElement>('.workbench-reach');
-  if (!section || section.dataset.simplified === 'true') return;
-
-  section.dataset.simplified = 'true';
-  section.classList.add('contact-simplified');
+  if (!section) return false;
 
   const email = findElementByText(section, 'email me');
   const book = findElementByText(section, 'book a call');
   const dm = findElementByText(section, 'dm on x');
+  if (!email && !book && !dm) return false;
+
+  section.dataset.simplified = 'true';
+  section.classList.add('contact-simplified');
 
   const primary = email ? cardFor(email, section) : null;
   const unwanted = [book, dm]
@@ -47,10 +48,19 @@ function simplifyContact(): void {
       if (!keep) action.classList.add('contact-remove-action');
     });
   }
+
+  return true;
 }
+
+let observer: MutationObserver | null = null;
 
 export function initContactSimplify(): void {
   simplifyContact();
+  if (observer) observer.disconnect();
+  observer = new MutationObserver(() => {
+    if (simplifyContact()) observer?.disconnect();
+  });
+  observer.observe(document.body, { childList: true, subtree: true });
 }
 
 if (document.readyState === 'loading') {
