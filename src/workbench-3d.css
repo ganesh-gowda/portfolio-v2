@@ -1,0 +1,14 @@
+/* One-page 3D experiment for the Workbench. */
+.workbench-page .project-stage{perspective:1400px}
+.workbench-page .project-feature{position:relative;transform-style:preserve-3d;transition:transform .22s ease-out,box-shadow .4s ease}
+.workbench-page .project-feature::after{content:'';position:absolute;inset:8%;border:1px solid rgba(110,215,255,.13);border-radius:28px;transform:translateZ(-18px) rotateX(3deg) rotateY(-4deg);box-shadow:0 0 80px rgba(23,105,255,.08);pointer-events:none}
+.workbench-page .project-visual{transform-style:preserve-3d}
+.workbench-page .project-visual::after{width:52%;left:24%;top:24%;border-color:rgba(110,215,255,.24);box-shadow:0 0 80px rgba(0,196,255,.12);transform:translateZ(20px) rotateX(58deg) rotateY(10deg)}
+.workbench-page .visual-core{transform:translateZ(38px) rotateX(8deg) rotateY(-10deg);filter:drop-shadow(0 22px 30px rgba(0,0,0,.28))}
+.workbench-page .visual-data{transform:translateZ(50px);text-shadow:0 0 18px rgba(110,215,255,.16)}
+.workbench-page .project-copy{transform:translateZ(38px)}
+.workbench-page .project-tab{transition:transform .25s ease,background .25s ease}
+.workbench-page .project-tab:hover,.workbench-page .project-tab.active{transform:translateX(6px)}
+.workbench-page .project-feature:hover{box-shadow:0 44px 120px rgba(0,0,0,.44),0 0 110px rgba(23,105,255,.14),inset 0 1px rgba(255,255,255,.09)}
+.workbench-page .workbench-hero,.workbench-page .toolkit-section,.workbench-page .work-section,.workbench-page .workbench-reach{transform-style:preserve-3d}
+@media (prefers-reduced-motion:reduce){.workbench-page .project-feature{transition:none}.workbench-page .project-feature::after{display:none}}
