@@ -17,6 +17,7 @@ import './landing-blue.css';
 import './workbench-3d.css';
 import './project-links.css';
 import './contact-simplify.css';
+import './contact-card-fix.css';
 import './about-interactions';
 import './toolkit-icons';
 import './project-links';

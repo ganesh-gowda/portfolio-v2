@@ -8,15 +8,15 @@ function renderContact(section: HTMLElement): void {
       <p class="contact-intro">Got a project, opportunity, or just want to say hello? Reach out and let's build something interesting.</p>
     </div>
     <div class="contact-actions-row" aria-label="Contact options">
-      <a class="contact-action-card" href="mailto:ganeshgowdam6@gmail.com">
+      <a class="contact-action-card" href="mailto:ganeshgowdam6@gmail.com?subject=Hiring%20Ganesh%20Gowda">
         <span class="contact-action-kicker">01 / DIRECT</span>
         <strong>EMAIL ME</strong>
         <span class="contact-action-meta">ganeshgowdam6@gmail.com ↗</span>
       </a>
-      <a class="contact-action-card" href="/resume.html" target="_blank" rel="noopener noreferrer">
+      <a class="contact-action-card" href="/resume.pdf" target="_blank" rel="noopener noreferrer">
         <span class="contact-action-kicker">02 / PROFILE</span>
         <strong>GET RESUME</strong>
-        <span class="contact-action-meta">view / print ↗</span>
+        <span class="contact-action-meta">open / download ↗</span>
       </a>
     </div>
   `;

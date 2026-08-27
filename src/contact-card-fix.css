@@ -1,0 +1,4 @@
+/* Contact card polish. */
+.contact-action-card::before {
+  display: none !important;
+}
