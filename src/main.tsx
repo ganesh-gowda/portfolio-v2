@@ -15,8 +15,10 @@ import './workbench-iridescent.css';
 import './workbench-cinematic.css';
 import './landing-blue.css';
 import './workbench-3d.css';
+import './project-links.css';
 import './about-interactions';
 import './toolkit-icons';
+import './project-links';
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
